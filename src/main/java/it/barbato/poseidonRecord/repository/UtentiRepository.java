@@ -1,0 +1,15 @@
+package it.barbato.poseidonRecord.repository;
+
+import it.barbato.poseidonRecord.entity.Utenti;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+
+public interface UtentiRepository extends MineRepository<Utenti, Integer> {
+
+
+    List<Utenti> findAll();
+
+    @Query("select u from Utenti u where u.id = :id")
+    Utenti findByIdUtente(Integer id);
+}
