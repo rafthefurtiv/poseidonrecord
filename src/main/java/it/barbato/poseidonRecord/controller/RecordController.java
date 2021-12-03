@@ -17,6 +17,9 @@ public interface RecordController {
     @GetMapping("/filtered")
     public List<Record> getRecordByFilter(
             @RequestParam(name="categoria", required = false) Integer categoria,
-            @RequestParam(name="corta", required = false) Integer corta
+            @RequestParam(name="corta", required = false) Integer corta,
+            @RequestParam(name="utente", required = false) Integer utente,
+            @RequestParam(name="metri", required = false) Integer metri,
+            @RequestParam(name="stile", required = false) Integer stile
     );
 }

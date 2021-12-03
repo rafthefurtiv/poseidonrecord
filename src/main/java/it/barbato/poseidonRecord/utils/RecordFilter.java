@@ -3,7 +3,35 @@ package it.barbato.poseidonRecord.utils;
 public class RecordFilter {
 
     private Integer categoria;
-    private Integer flag_vasca_corta;
+    private Integer flagVascaCorta;
+    private Integer utente;
+    private Integer metri;
+    private Integer stile;
+
+
+    public Integer getUtente() {
+        return utente;
+    }
+
+    public void setUtente(Integer utente) {
+        this.utente = utente;
+    }
+
+    public Integer getMetri() {
+        return metri;
+    }
+
+    public void setMetri(Integer metri) {
+        this.metri = metri;
+    }
+
+    public Integer getStile() {
+        return stile;
+    }
+
+    public void setStile(Integer stile) {
+        this.stile = stile;
+    }
 
     public Integer getCategoria() {
         return categoria;
@@ -13,11 +41,11 @@ public class RecordFilter {
         this.categoria = categoria;
     }
 
-    public Integer getFlag_vasca_corta() {
-        return flag_vasca_corta;
+    public Integer getFlagVascaCorta() {
+        return flagVascaCorta;
     }
 
-    public void setFlag_vasca_corta(Integer flag_vasca_corta) {
-        this.flag_vasca_corta = flag_vasca_corta;
+    public void setFlagVascaCorta(Integer flagVascaCorta) {
+        this.flagVascaCorta = flagVascaCorta;
     }
 }

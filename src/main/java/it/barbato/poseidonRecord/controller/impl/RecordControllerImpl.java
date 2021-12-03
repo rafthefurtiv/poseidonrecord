@@ -6,7 +6,6 @@ import it.barbato.poseidonRecord.service.RecordService;
 import it.barbato.poseidonRecord.service.UtentiService;
 import it.barbato.poseidonRecord.utils.RecordFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -28,11 +27,17 @@ public class RecordControllerImpl implements RecordController {
     @Override
     public List<Record> getRecordByFilter(
             Integer categoria,
-            Integer corta
+            Integer corta,
+            Integer utente,
+            Integer metri,
+            Integer stile
     ) {
         RecordFilter recordFilter = new RecordFilter();
         recordFilter.setCategoria(categoria);
-        recordFilter.setFlag_vasca_corta(corta);
+        recordFilter.setFlagVascaCorta(corta);
+        recordFilter.setUtente(utente);
+        recordFilter.setMetri(metri);
+        recordFilter.setStile(stile);
 
         return recordService.findByFilter(recordFilter);
     }

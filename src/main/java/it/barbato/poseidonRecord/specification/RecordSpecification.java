@@ -41,8 +41,23 @@ public class RecordSpecification implements Specification<Record> {
             }
 
             // vasca corta
-            if(recordFilter.getFlag_vasca_corta()!=null){
-                predicatesList.add(criteriaBuilder.equal(root.get("flagVascaCorta"), recordFilter.getFlag_vasca_corta()));
+            if(recordFilter.getFlagVascaCorta()!=null){
+                predicatesList.add(criteriaBuilder.equal(root.get("flagVascaCorta"), recordFilter.getFlagVascaCorta()));
+            }
+
+            // utente
+            if(recordFilter.getUtente()!=null){
+                predicatesList.add(criteriaBuilder.equal(root.get("utente"), recordFilter.getUtente()));
+            }
+
+            // metri
+            if(recordFilter.getMetri()!=null){
+                predicatesList.add(criteriaBuilder.equal(root.get("metri"), recordFilter.getMetri()));
+            }
+
+            // stile
+            if(recordFilter.getStile()!=null){
+                predicatesList.add(criteriaBuilder.equal(root.get("stile"), recordFilter.getStile()));
             }
         }
 
