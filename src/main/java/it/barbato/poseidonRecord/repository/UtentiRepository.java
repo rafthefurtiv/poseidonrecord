@@ -7,9 +7,11 @@ import java.util.List;
 
 public interface UtentiRepository extends MineRepository<Utenti, Integer> {
 
-
     List<Utenti> findAll();
 
     @Query("select u from Utenti u where u.id = :id")
     Utenti findByIdUtente(Integer id);
+
+    @Query("select u from Utenti u where u.username = :username")
+    Utenti findByUsername(String username);
 }

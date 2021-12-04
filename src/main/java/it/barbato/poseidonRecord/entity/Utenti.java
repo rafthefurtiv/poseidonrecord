@@ -28,6 +28,94 @@ public class Utenti {
     @Column(name = "password", length = 100)
     private String password;
 
+    @Column(name = "codice_sesso", length = 1)
+    private String codiceSesso;
+
+    @Column(name = "medaglie_oro", nullable = false)
+    private Integer medaglieOro;
+
+    @Column(name = "medaglie_argento", nullable = false)
+    private Integer medaglieArgento;
+
+    @Column(name = "medaglie_bronzo", nullable = false)
+    private Integer medaglieBronzo;
+
+    @Column(name = "medaglie_oro_staffetta", nullable = false)
+    private Integer medaglieOroStaffetta;
+
+    @Column(name = "medaglie_argento_staffetta", nullable = false)
+    private Integer medaglieArgentoStaffetta;
+
+    @Column(name = "medaglie_bronzo_staffetta", nullable = false)
+    private Integer medaglieBronzoStaffetta;
+
+    @Column(name = "descrizione", length = 1024)
+    private String descrizione;
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public Integer getMedaglieBronzoStaffetta() {
+        return medaglieBronzoStaffetta;
+    }
+
+    public void setMedaglieBronzoStaffetta(Integer medaglieBronzoStaffetta) {
+        this.medaglieBronzoStaffetta = medaglieBronzoStaffetta;
+    }
+
+    public Integer getMedaglieArgentoStaffetta() {
+        return medaglieArgentoStaffetta;
+    }
+
+    public void setMedaglieArgentoStaffetta(Integer medaglieArgentoStaffetta) {
+        this.medaglieArgentoStaffetta = medaglieArgentoStaffetta;
+    }
+
+    public Integer getMedaglieOroStaffetta() {
+        return medaglieOroStaffetta;
+    }
+
+    public void setMedaglieOroStaffetta(Integer medaglieOroStaffetta) {
+        this.medaglieOroStaffetta = medaglieOroStaffetta;
+    }
+
+    public Integer getMedaglieBronzo() {
+        return medaglieBronzo;
+    }
+
+    public void setMedaglieBronzo(Integer medaglieBronzo) {
+        this.medaglieBronzo = medaglieBronzo;
+    }
+
+    public Integer getMedaglieArgento() {
+        return medaglieArgento;
+    }
+
+    public void setMedaglieArgento(Integer medaglieArgento) {
+        this.medaglieArgento = medaglieArgento;
+    }
+
+    public Integer getMedaglieOro() {
+        return medaglieOro;
+    }
+
+    public void setMedaglieOro(Integer medaglieOro) {
+        this.medaglieOro = medaglieOro;
+    }
+
+    public String getCodiceSesso() {
+        return codiceSesso;
+    }
+
+    public void setCodiceSesso(String codiceSesso) {
+        this.codiceSesso = codiceSesso;
+    }
+
     public String getPassword() {
         return password;
     }

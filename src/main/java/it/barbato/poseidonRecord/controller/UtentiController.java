@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("utenti/")
+@RequestMapping("/utenti")
 public interface UtentiController {
 
-    @GetMapping("utente/{id}")
+    @GetMapping("/utente/{id}")
     public Utenti findByIdUtente(@PathVariable("id") Integer id);
 
-    @GetMapping("utenti")
+    @GetMapping("/utenti")
     public List<Utenti> getUtenteUnoById();
 }

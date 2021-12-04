@@ -1,14 +1,12 @@
 package it.barbato.poseidonRecord.controller;
 
 import it.barbato.poseidonRecord.entity.Record;
-import it.barbato.poseidonRecord.entity.Utenti;
-import it.barbato.poseidonRecord.utils.RecordFilter;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("record")
+@RequestMapping("/record")
 public interface RecordController {
 
     @GetMapping()

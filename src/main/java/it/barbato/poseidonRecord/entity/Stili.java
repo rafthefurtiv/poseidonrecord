@@ -15,6 +15,9 @@ public class Stili {
     @Column(name = "descrizione", nullable = false, length = 48)
     private String descrizione;
 
+    @Column(name = "descrizione_breve", nullable = false, length = 2)
+    private String descrizioneBreve;
+
     public String getDescrizione() {
         return descrizione;
     }
@@ -29,5 +32,13 @@ public class Stili {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getDescrizioneBreve() {
+        return descrizioneBreve;
+    }
+
+    public void setDescrizioneBreve(String descrizioneBreve) {
+        this.descrizioneBreve = descrizioneBreve;
     }
 }

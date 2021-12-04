@@ -17,7 +17,15 @@ public class UtentiService {
         return utentiRepository.findByIdUtente(id);
     }
 
+    public Utenti findByUsername(String username) {
+        return utentiRepository.findByUsername(username);
+    }
+
     public List<Utenti> findAll() {
         return utentiRepository.findAll();
+    }
+
+    public void saveUtente(Utenti utente){
+        utentiRepository.save(utente);
     }
 }
