@@ -19,16 +19,16 @@ public class Utenti {
     @Column(name = "cognome", nullable = false, length = 100)
     private String cognome;
 
-    @Column(name = "email", length = 200)
+    @Column(name = "email", nullable = false, length = 200)
     private String email;
 
-    @Column(name = "username", length = 100)
+    @Column(name = "username", nullable = false, length = 100)
     private String username;
 
-    @Column(name = "password", length = 100)
+    @Column(name = "password", nullable = false, length = 100)
     private String password;
 
-    @Column(name = "codice_sesso", length = 1)
+    @Column(name = "codice_sesso", nullable = false, length = 1)
     private String codiceSesso;
 
     @Column(name = "medaglie_oro", nullable = false)
