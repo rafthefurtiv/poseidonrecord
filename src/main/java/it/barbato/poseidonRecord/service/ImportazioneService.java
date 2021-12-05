@@ -39,7 +39,8 @@ public class ImportazioneService {
         List<String> keys =  jsonObj.keySet().stream().collect(Collectors.toList());
         keys.forEach(k -> {
             Map<String, Object> utenteMap = new JSONObject(jsonObj.get(k).toString()).toMap();
-            //utentiRepository.save(Converter.mapToUtente(utenteMap));
+            Utenti u = utentiRepository.save(Converter.mapToUtente(utenteMap));
+
 
             try {
                 List<Object> gare = (List<Object>) utenteMap.get("gare");
@@ -52,10 +53,18 @@ public class ImportazioneService {
                     if (gJson.get("tempo") != null && !gJson.get("tempo").toString().isEmpty()) {
 
                         Record record = new Record();
-                        record.setFlagVascaCorta(gJson.get("tempo").toString().equalsIgnoreCase("V.C.") ? 1 : 0);
+                        if(gJson.get("lunghezza").toString().equalsIgnoreCase("V.C.")){
+                            record.setFlagVascaCorta(1);
+                        }
+                        else if (gJson.get("lunghezza").toString().equalsIgnoreCase("V.L.")){
+                            record.setFlagVascaCorta(0);
+                        }
+                        else{
+                            record.setFlagVascaCorta(-1);
+                        }
                         record.setTempo(getTempo(gJson.get("tempo").toString(), k));
-                        Utenti utente = utentiRepository.findByUsername(k);
-                        record.setUtente(utente);
+                        //Utenti utente = utentiRepository.findByUsername(k);
+                        record.setUtente(u);
                         record.setMetri(convertiDatoMetri(gJson.get("nomeGara").toString()));
 
                         Categorie categorie = categoriaRepository.findByCodicecategria(gJson.get("categoria").toString());
@@ -67,16 +76,15 @@ public class ImportazioneService {
                         record.setStile(stile);
 
                         if(record.getTempo() != 0){
-                            //recordRepository.save(record);
+                            recordRepository.save(record);
                         }
                     }
-
-
                 });
 
             }
             catch (Exception e){
                 System.out.println("Errore gare " + k);
+                // TODO verificare utente null
             }
 
         });

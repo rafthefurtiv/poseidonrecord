@@ -20,6 +20,10 @@ public class Converter {
         utente.setMedaglieArgentoStaffetta(json.get("medaglieArgentoStaff") != null ? Integer.parseInt(json.get("medaglieArgentoStaff").toString()) :  0);
         utente.setMedaglieBronzoStaffetta(json.get("medaglieBronzoStaff") != null ? Integer.parseInt(json.get("medaglieBronzoStaff").toString()) : 0);
 
+
+        utente.setEmail(utente.getNome() + "." + utente.getCognome() + "@esempio.it");
+        utente.setPassword(utente.getNome() + "." + utente.getCognome());
+
         return utente;
     }
 }
