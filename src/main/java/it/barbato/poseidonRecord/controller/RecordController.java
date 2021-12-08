@@ -3,8 +3,11 @@ package it.barbato.poseidonRecord.controller;
 import it.barbato.poseidonRecord.entity.Categorie;
 import it.barbato.poseidonRecord.entity.Record;
 import it.barbato.poseidonRecord.entity.Stili;
+import it.barbato.poseidonRecord.entity.dto.NewRecordDto;
 import it.barbato.poseidonRecord.entity.dto.RecordDto;
+import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 import java.util.Map;
@@ -44,6 +47,10 @@ public interface RecordController {
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/tipologiche")
     public Map<String, List<String>> getTipologiche();
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/new")
+    public ResponseBody addRecord(@RequestBody() NewRecordDto rec);
 
 
 }

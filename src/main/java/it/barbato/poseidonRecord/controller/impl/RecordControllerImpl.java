@@ -5,16 +5,20 @@ import it.barbato.poseidonRecord.entity.Categorie;
 import it.barbato.poseidonRecord.entity.Record;
 import it.barbato.poseidonRecord.entity.Stili;
 import it.barbato.poseidonRecord.entity.Utenti;
+import it.barbato.poseidonRecord.entity.dto.NewRecordDto;
 import it.barbato.poseidonRecord.entity.dto.RecordDto;
 import it.barbato.poseidonRecord.repository.CategoriaRepository;
 import it.barbato.poseidonRecord.repository.StiliRepository;
 import it.barbato.poseidonRecord.service.RecordService;
 import it.barbato.poseidonRecord.service.UtentiService;
 import it.barbato.poseidonRecord.utils.RecordFilter;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 import java.util.Map;
@@ -96,5 +100,16 @@ public class RecordControllerImpl implements RecordController {
         return null;
     }
 
+    @Override
+    public ResponseBody addRecord(NewRecordDto rec){
+        System.out.println(rec);
+
+        // TODO Verificare se esiste già
+        // se esiste fare il confronto
+        // se non esiste aggiungere
+        // se minore fare update tempo
+
+        return null;
+    }
 
 }
