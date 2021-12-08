@@ -7,6 +7,7 @@ public class NewRecordDto {
     private Integer metri;
     private Integer idStile;
     private Integer idCategoria;
+    private Integer vasca;
     private Integer minuti;
     private Integer secondi;
     private Integer centesimi;
@@ -65,5 +66,13 @@ public class NewRecordDto {
 
     public void setCentesimi(Integer centesimi) {
         this.centesimi = centesimi;
+    }
+
+    public Integer getVasca() {
+        return vasca;
+    }
+
+    public void setVasca(Integer vasca) {
+        this.vasca = vasca;
     }
 }

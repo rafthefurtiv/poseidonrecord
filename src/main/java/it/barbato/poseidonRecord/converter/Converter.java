@@ -1,8 +1,11 @@
 package it.barbato.poseidonRecord.converter;
 
+import it.barbato.poseidonRecord.entity.Categorie;
 import it.barbato.poseidonRecord.entity.Record;
+import it.barbato.poseidonRecord.entity.Stili;
 import it.barbato.poseidonRecord.entity.Utenti;
 import it.barbato.poseidonRecord.entity.dto.GaraDto;
+import it.barbato.poseidonRecord.entity.dto.NewRecordDto;
 import it.barbato.poseidonRecord.entity.dto.RecordDto;
 
 import java.util.ArrayList;
@@ -52,6 +55,33 @@ public class Converter {
         });
         recordDto.setGare(garaDtoList);
         return recordDto;
+    }
+
+
+    public static Record newRecordDtoToRecord(NewRecordDto newRecordDto){
+
+        Record record = new Record();
+        record.setMetri(newRecordDto.getMetri());
+
+        Stili stile = new Stili();
+        stile.setId(newRecordDto.getIdStile());
+        record.setStile(stile);
+
+        Categorie categoria = new Categorie();
+        categoria.setId(newRecordDto.getIdCategoria());
+        record.setCategoria(categoria);
+
+        Utenti utente = new Utenti();
+        utente.setId(newRecordDto.getIdUtente());
+        record.setUtente(utente);
+
+        record.setFlagVascaCorta(newRecordDto.getVasca());
+        record.setTempo(new Double(newRecordDto.getMinuti()*6000 + newRecordDto.getSecondi()*100 + newRecordDto.getCentesimi()));
+
+        record.setFlagSocietario(0);
+
+
+        return record;
     }
 
 

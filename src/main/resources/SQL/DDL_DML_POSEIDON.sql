@@ -63,12 +63,10 @@ inner join poseidonRecord.categorie c on c.id_categoria = r.categoria;
 
 -- ESEMPI DML----------------------------------------
 -- UTENTI
--- insert into poseidonRecord.Utenti (nome, cognome, email, username, password, codice) 
--- values ("Raffaele", "Barbato", "rafthefurtiv@gmail.com", "Renegade", "test");
--- insert into poseidonRecord.Utenti (nome, cognome, email, username, password) 
--- values ("Dino", "Diana", "dino@gmail.com", "Boss", "test");
--- insert into poseidonRecord.Utenti (nome, cognome, email, username, password) 
--- values ("Gaetano", "Cerullo", "tano@gmail.com", "Ragioniere", "test");
+ -- insert into poseidonRecord.Utenti (nome, cognome, email, username, password, codice_sesso, medaglie_oro, medaglie_argento,medaglie_bronzo,
+ -- medaglie_oro_staffetta, medaglie_argento_staffetta, medaglie_bronzo_staffetta)
+ -- values ("Test", "Test", "test@gmail.com", "Test", "Test", 1, 0, 0, 0, 0, 0, 0);
+
 
 -- STILI
 insert into poseidonRecord.Stili (descrizione, descrizione_breve) values ("Stile", "SL");

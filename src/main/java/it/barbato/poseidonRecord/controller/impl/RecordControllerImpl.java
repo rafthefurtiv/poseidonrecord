@@ -1,6 +1,7 @@
 package it.barbato.poseidonRecord.controller.impl;
 
 import it.barbato.poseidonRecord.controller.RecordController;
+import it.barbato.poseidonRecord.converter.Converter;
 import it.barbato.poseidonRecord.entity.Categorie;
 import it.barbato.poseidonRecord.entity.Record;
 import it.barbato.poseidonRecord.entity.Stili;
@@ -104,10 +105,16 @@ public class RecordControllerImpl implements RecordController {
     public ResponseBody addRecord(NewRecordDto rec){
         System.out.println(rec);
 
-        // TODO Verificare se esiste già
-        // se esiste fare il confronto
-        // se non esiste aggiungere
-        // se minore fare update tempo
+        Record newRecord = Converter.newRecordDtoToRecord(rec);
+
+        Record oldrecord = recordService.findByFilter(newRecord);
+        if(oldrecord != null && newRecord.getTempo() <= oldrecord.getTempo()){
+            oldrecord.setTempo(newRecord.getTempo());
+            recordService.save(oldrecord);
+        }
+        else if (oldrecord == null){
+            recordService.save(newRecord);
+        }
 
         return null;
     }

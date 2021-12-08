@@ -45,4 +45,14 @@ public class RecordService {
 
         return recordDtoList;
     }
+
+    public Record save(Record record){
+        return recordRepository.save(record);
+    }
+
+    public Record findByFilter(Record record){
+        return recordRepository.findByFilter(record.getUtente().getId(), record.getCategoria().getId()
+                , record.getStile().getId(), record.getMetri(),
+                record.getFlagVascaCorta());
+    }
 }
