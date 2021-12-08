@@ -9,9 +9,11 @@ import java.util.List;
 @RequestMapping("/utenti")
 public interface UtentiController {
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/utente/{id}")
     public Utenti findByIdUtente(@PathVariable("id") Integer id);
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/utenti")
     public List<Utenti> getUtenteUnoById();
 }

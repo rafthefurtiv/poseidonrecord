@@ -41,7 +41,6 @@ public class ImportazioneService {
             Map<String, Object> utenteMap = new JSONObject(jsonObj.get(k).toString()).toMap();
             Utenti u = utentiRepository.save(Converter.mapToUtente(utenteMap));
 
-
             try {
                 List<Object> gare = (List<Object>) utenteMap.get("gare");
 

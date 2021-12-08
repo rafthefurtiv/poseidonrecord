@@ -1,7 +1,12 @@
 package it.barbato.poseidonRecord.converter;
 
+import it.barbato.poseidonRecord.entity.Record;
 import it.barbato.poseidonRecord.entity.Utenti;
+import it.barbato.poseidonRecord.entity.dto.GaraDto;
+import it.barbato.poseidonRecord.entity.dto.RecordDto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Converter {
@@ -11,7 +16,7 @@ public class Converter {
         utente.setNome(json.get("nome").toString());
         utente.setCognome(json.get("cognome").toString());
         utente.setUsername(json.get("userName").toString());
-        utente.setCodiceSesso(Integer.parseInt(json.get("sesso").toString()) == 0 ? "M" : "S");
+        utente.setCodiceSesso(Integer.parseInt(json.get("sesso").toString()) == 0 ? "M" : "F");
         utente.setDescrizione(json.get("descrizione") != null ? json.get("descrizione").toString() : "");
         utente.setMedaglieOro(json.get("medaglieOro") != null ? Integer.parseInt(json.get("medaglieOro").toString()) : 0);
         utente.setMedaglieArgento(json.get("medaglieArgento") != null ? Integer.parseInt(json.get("medaglieArgento").toString()) : 0);
@@ -26,4 +31,28 @@ public class Converter {
 
         return utente;
     }
+
+
+    public static RecordDto recordToRecordDto(Utenti utenti, List<Record> recordList){
+
+        RecordDto recordDto = new RecordDto();
+
+        recordDto.setNome(utenti.getNome());
+        recordDto.setCognome(utenti.getCognome());
+        recordDto.setCodiceSesso(utenti.getCodiceSesso());
+        recordDto.setUsername(utenti.getUsername());
+        List<GaraDto> garaDtoList = new ArrayList<>();
+        recordList.forEach(gara -> {
+            GaraDto garaDto = new GaraDto();
+            garaDto.setNomeGara(gara.getMetri() + " " + gara.getStile().getDescrizione());
+            garaDto.setVasca(gara.getFlagVascaCorta()==1 ? "Corta" : "Lunga");
+            garaDto.setCategoria(gara.getCategoria().getCodiceCategoria());
+            garaDto.setTempo(gara.getTempo());
+            garaDtoList.add(garaDto);
+        });
+        recordDto.setGare(garaDtoList);
+        return recordDto;
+    }
+
+
 }
