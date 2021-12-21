@@ -12,6 +12,7 @@
 	<artifactId>poseidonRecord</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>poseidonRecord</name>
+	<packaging>war</packaging>
 	<description>BE applicazione master</description>
 	<properties>
 		<java.version>1.8</java.version>
