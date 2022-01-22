@@ -94,9 +94,9 @@ public class ImportazioneService {
         Double result = new Double(0);
         try {
             if (tempo.contains("£") && tempo.contains("$")) {
-                String minuti = tempo.substring(0, tempo.indexOf('£'));
-                String secondi = tempo.substring(tempo.indexOf('£') + 1, tempo.indexOf('$'));
-                String cent = tempo.substring(tempo.indexOf('$') + 1);
+                String minuti = tempo.substring(0, tempo.indexOf("£"));
+                String secondi = tempo.substring(tempo.indexOf("£") + 1, tempo.indexOf('$'));
+                String cent = tempo.substring(tempo.indexOf("$") + 1);
 
                 Integer minutiDouble = Integer.parseInt(minuti) * 6000;
                 Integer secondiDouble = Integer.parseInt(secondi) * 100;
@@ -104,8 +104,8 @@ public class ImportazioneService {
 
                 result = new Double(minutiDouble + secondiDouble + centDouble);
             } else if (tempo.contains("$")) {
-                String secondi = tempo.substring(0, tempo.indexOf('$'));
-                String cent = tempo.substring(tempo.indexOf('$') + 1, tempo.length());
+                String secondi = tempo.substring(0, tempo.indexOf("$"));
+                String cent = tempo.substring(tempo.indexOf("$") + 1, tempo.length());
 
                 Integer secondiDouble = Integer.parseInt(secondi) * 100;
                 Integer centDouble = Integer.parseInt(cent);

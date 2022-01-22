@@ -3,7 +3,7 @@ drop table poseidonRecord.utenti;
 drop table poseidonRecord.stili;
 drop table poseidonRecord.categorie;
 
-CREATE TABLE poseidonRecord.Utenti (
+CREATE TABLE poseidonRecord.utenti (
 	id_utente INT NOT null primary key AUTO_INCREMENT,
 	nome VARCHAR(100) NOT NULL,
 	cognome VARCHAR(100) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE poseidonRecord.record (
 	  CONSTRAINT `fk_record_utente`
     FOREIGN KEY (utente) REFERENCES Utenti (id_utente),
     	  CONSTRAINT `fk_record_categoria`
-    FOREIGN KEY (categoria) REFERENCES Categorie (id_categoria),
+    FOREIGN KEY (categoria) REFERENCES categorie (id_categoria),
     CONSTRAINT record_unique UNIQUE (utente, metri, stile, flag_vasca_corta, flag_societario, categoria)
 );
 
@@ -69,30 +69,30 @@ inner join poseidonRecord.categorie c on c.id_categoria = r.categoria;
 
 
 -- STILI
-insert into poseidonRecord.Stili (descrizione, descrizione_breve) values ("Stile", "SL");
-insert into poseidonRecord.Stili (descrizione, descrizione_breve) values ("Dorso", "DO");
-insert into poseidonRecord.Stili (descrizione, descrizione_breve) values ("Rana", "RA");
-insert into poseidonRecord.Stili (descrizione, descrizione_breve) values ("Farfalla", "FA");
-insert into poseidonRecord.Stili (descrizione, descrizione_breve) values ("Misti", "MX");
+insert into poseidonRecord.stili (descrizione, descrizione_breve) values ("Stile", "SL");
+insert into poseidonRecord.stili (descrizione, descrizione_breve) values ("Dorso", "DO");
+insert into poseidonRecord.stili (descrizione, descrizione_breve) values ("Rana", "RA");
+insert into poseidonRecord.stili (descrizione, descrizione_breve) values ("Farfalla", "FA");
+insert into poseidonRecord.stili (descrizione, descrizione_breve) values ("Misti", "MX");
 
 -- CATEGORIE
-insert into poseidonRecord.Categorie (codice_categoria) values ("U20");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M20");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M25");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M30");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M35");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M40");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M45");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M50");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M55");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M60");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M65");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M70");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M75");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M80");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M85");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M90");
-insert into poseidonRecord.Categorie (codice_categoria) values ("M95");
+insert into poseidonRecord.categorie (codice_categoria) values ("U20");
+insert into poseidonRecord.categorie (codice_categoria) values ("M20");
+insert into poseidonRecord.categorie (codice_categoria) values ("M25");
+insert into poseidonRecord.categorie (codice_categoria) values ("M30");
+insert into poseidonRecord.categorie (codice_categoria) values ("M35");
+insert into poseidonRecord.categorie (codice_categoria) values ("M40");
+insert into poseidonRecord.categorie (codice_categoria) values ("M45");
+insert into poseidonRecord.categorie (codice_categoria) values ("M50");
+insert into poseidonRecord.categorie (codice_categoria) values ("M55");
+insert into poseidonRecord.categorie (codice_categoria) values ("M60");
+insert into poseidonRecord.categorie (codice_categoria) values ("M65");
+insert into poseidonRecord.categorie (codice_categoria) values ("M70");
+insert into poseidonRecord.categorie (codice_categoria) values ("M75");
+insert into poseidonRecord.categorie (codice_categoria) values ("M80");
+insert into poseidonRecord.categorie (codice_categoria) values ("M85");
+insert into poseidonRecord.categorie (codice_categoria) values ("M90");
+insert into poseidonRecord.categorie (codice_categoria) values ("M95");
 
 
 
