@@ -39,6 +39,7 @@ public class ImportazioneService {
         List<String> keys =  jsonObj.keySet().stream().collect(Collectors.toList());
         keys.forEach(k -> {
             Map<String, Object> utenteMap = new JSONObject(jsonObj.get(k).toString()).toMap();
+            System.out.println(utenteMap.toString());
             Utenti u = utentiRepository.save(Converter.mapToUtente(utenteMap));
 
             try {
@@ -83,6 +84,9 @@ public class ImportazioneService {
             }
             catch (Exception e){
                 System.out.println("Errore gare " + k);
+                System.out.println("---------------------------");
+                e.printStackTrace();
+                System.out.println("---------------------------");
                 // TODO verificare utente null
             }
 

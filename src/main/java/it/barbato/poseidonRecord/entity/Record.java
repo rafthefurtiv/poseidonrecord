@@ -26,7 +26,7 @@ public class Record {
     @Column(name = "flag_vasca_corta", nullable = false)
     private Integer flagVascaCorta;
 
-    @Column(name = "flag_societario", nullable = false)
+    @Column(name = "flag_societario", nullable = true)
     private Integer flagSocietario;
 
     @Column(name = "tempo", nullable = false)
