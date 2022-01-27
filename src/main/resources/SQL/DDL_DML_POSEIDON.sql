@@ -47,7 +47,7 @@ CREATE TABLE poseidonRecord.record (
 	  CONSTRAINT `fk_record_stile`
     FOREIGN KEY (stile) REFERENCES stili (id_stile),
 	  CONSTRAINT `fk_record_utente`
-    FOREIGN KEY (utente) REFERENCES Utenti (id_utente),
+    FOREIGN KEY (utente) REFERENCES utenti (id_utente),
     	  CONSTRAINT `fk_record_categoria`
     FOREIGN KEY (categoria) REFERENCES categorie (id_categoria),
     CONSTRAINT record_unique UNIQUE (utente, metri, stile, flag_vasca_corta, flag_societario, categoria)

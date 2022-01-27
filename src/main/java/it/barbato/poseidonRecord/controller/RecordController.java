@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/record")
 public interface RecordController {
 
@@ -28,27 +29,27 @@ public interface RecordController {
             @RequestParam(name="stile", required = false) Integer stile
     );
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/records")
     public List<RecordDto> getRecords();
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:80", "http://localhost:4200"})
     @GetMapping("/stili")
     public List<Stili> getStili();
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:80", "http://localhost:4200"})
     @GetMapping("/metri")
     public List<Integer> getMetri();
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:80", "http://localhost:4200"})
     @GetMapping("/categorie")
     public List<Categorie> getCategorie();
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:80", "http://localhost:4200"})
     @GetMapping("/tipologiche")
     public Map<String, List<String>> getTipologiche();
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @CrossOrigin(origins = {"http://localhost:80", "http://localhost:4200"})
     @PostMapping("/new")
     public ResponseBody addRecord(@RequestBody() NewRecordDto rec);
 
