@@ -125,7 +125,7 @@ public class RecordControllerImpl implements RecordController {
             return new ResponseEntity<Esito>(esito, HttpStatus.OK);
         }
 
-        esito.setMessage("Il record presenta già un tempo pù basso.");
+        esito.setMessage("Il record presenta giï¿½ un tempo pï¿½ basso.");
         esito.setEsito(false);
         return new ResponseEntity<Esito>(esito, HttpStatus.NOT_MODIFIED);
     }
@@ -134,6 +134,16 @@ public class RecordControllerImpl implements RecordController {
     public ResponseEntity<?> getRecordSocietari() {
         List<RecordDto> recordDtoList = getRecords();
 
+        /*
+        select u.username , min(tempo), s.descrizione , metri, flag_vasca_corta, c.codice_categoria
+from poseidonrecord.record r
+inner join poseidonrecord.utenti u on r.utente = u.id_utente
+inner join poseidonrecord.categorie c on c.id_categoria = r.categoria
+inner join poseidonrecord.stili s on s.id_stile = r.stile
+group by stile, metri, flag_vasca_corta, categoria
+;
+
+        */
 
 
 
