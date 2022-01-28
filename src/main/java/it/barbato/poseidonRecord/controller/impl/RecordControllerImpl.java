@@ -2,10 +2,8 @@ package it.barbato.poseidonRecord.controller.impl;
 
 import it.barbato.poseidonRecord.controller.RecordController;
 import it.barbato.poseidonRecord.converter.Converter;
-import it.barbato.poseidonRecord.entity.Categorie;
+import it.barbato.poseidonRecord.entity.*;
 import it.barbato.poseidonRecord.entity.Record;
-import it.barbato.poseidonRecord.entity.Stili;
-import it.barbato.poseidonRecord.entity.Utenti;
 import it.barbato.poseidonRecord.entity.dto.NewRecordDto;
 import it.barbato.poseidonRecord.entity.dto.RecordDto;
 import it.barbato.poseidonRecord.repository.CategoriaRepository;
@@ -17,6 +15,8 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.spring.web.json.Json;
@@ -102,8 +102,9 @@ public class RecordControllerImpl implements RecordController {
     }
 
     @Override
-    public ResponseBody addRecord(NewRecordDto rec){
+    public ResponseEntity<?> addRecord(NewRecordDto rec){
         System.out.println(rec);
+        Esito esito = new Esito();
 
         Record newRecord = Converter.newRecordDtoToRecord(rec);
 
@@ -111,10 +112,30 @@ public class RecordControllerImpl implements RecordController {
         if(oldrecord != null && newRecord.getTempo() <= oldrecord.getTempo()){
             oldrecord.setTempo(newRecord.getTempo());
             recordService.save(oldrecord);
+
+            esito.setMessage("Il record  stato aggiornato.");
+            esito.setEsito(true);
+            return new ResponseEntity<Esito>(esito, HttpStatus.OK);
         }
         else if (oldrecord == null){
             recordService.save(newRecord);
+
+            esito.setMessage("Nuovo record inserito.");
+            esito.setEsito(true);
+            return new ResponseEntity<Esito>(esito, HttpStatus.OK);
         }
+
+        esito.setMessage("Il record presenta già un tempo pù basso.");
+        esito.setEsito(false);
+        return new ResponseEntity<Esito>(esito, HttpStatus.NOT_MODIFIED);
+    }
+
+    @Override
+    public ResponseEntity<?> getRecordSocietari() {
+        List<RecordDto> recordDtoList = getRecords();
+
+
+
 
         return null;
     }

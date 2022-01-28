@@ -6,6 +6,7 @@ import it.barbato.poseidonRecord.entity.Stili;
 import it.barbato.poseidonRecord.entity.dto.NewRecordDto;
 import it.barbato.poseidonRecord.entity.dto.RecordDto;
 import org.json.JSONObject;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.spring.web.json.Json;
 
@@ -33,25 +34,28 @@ public interface RecordController {
     @GetMapping("/records")
     public List<RecordDto> getRecords();
 
-    @CrossOrigin(origins = {"http://localhost:80", "http://localhost:4200"})
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/stili")
     public List<Stili> getStili();
 
-    @CrossOrigin(origins = {"http://localhost:80", "http://localhost:4200"})
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/metri")
     public List<Integer> getMetri();
 
-    @CrossOrigin(origins = {"http://localhost:80", "http://localhost:4200"})
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/categorie")
     public List<Categorie> getCategorie();
 
-    @CrossOrigin(origins = {"http://localhost:80", "http://localhost:4200"})
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/tipologiche")
     public Map<String, List<String>> getTipologiche();
 
-    @CrossOrigin(origins = {"http://localhost:80", "http://localhost:4200"})
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/new")
-    public ResponseBody addRecord(@RequestBody() NewRecordDto rec);
+    public ResponseEntity<?> addRecord(@RequestBody() NewRecordDto rec);
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/new")
+    public ResponseEntity<?> getRecordSocietari();
 
 }

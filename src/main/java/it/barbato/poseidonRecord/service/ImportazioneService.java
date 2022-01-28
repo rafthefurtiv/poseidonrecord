@@ -48,7 +48,7 @@ public class ImportazioneService {
                 gare.forEach(g -> {
                     //System.out.println(g);
                     JSONObject gJson = new JSONObject(g.toString().replace("''", "$")
-                            .replace("'", "£").replace("=", ":"));
+                            .replace("'", "?").replace("=", ":"));
 
                     if (gJson.get("tempo") != null && !gJson.get("tempo").toString().isEmpty()) {
 
@@ -97,9 +97,11 @@ public class ImportazioneService {
         if(tempo.isEmpty()){return new Double(0);}
         Double result = new Double(0);
         try {
-            if (tempo.contains("£") && tempo.contains("$")) {
-                String minuti = tempo.substring(0, tempo.indexOf("£"));
-                String secondi = tempo.substring(tempo.indexOf("£") + 1, tempo.indexOf('$'));
+            if (tempo.contains("?") && tempo.contains("$")) {
+                String minuti = tempo.substring(0, tempo.indexOf("?"));
+
+                int index2 = tempo.indexOf("?")+1;
+                String secondi = tempo.substring(index2, tempo.indexOf("$"));
                 String cent = tempo.substring(tempo.indexOf("$") + 1);
 
                 Integer minutiDouble = Integer.parseInt(minuti) * 6000;
