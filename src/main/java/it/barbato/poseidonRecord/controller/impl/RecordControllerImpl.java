@@ -132,22 +132,28 @@ public class RecordControllerImpl implements RecordController {
 
     @Override
     public ResponseEntity<?> getRecordSocietari() {
-        List<RecordDto> recordDtoList = getRecords();
+        List<Record> recordDtoList = recordService.findRecordSocietari();
+
+
 
         /*
-        select u.username , min(tempo), s.descrizione , metri, flag_vasca_corta, c.codice_categoria
-from poseidonrecord.record r
-inner join poseidonrecord.utenti u on r.utente = u.id_utente
-inner join poseidonrecord.categorie c on c.id_categoria = r.categoria
-inner join poseidonrecord.stili s on s.id_stile = r.stile
-group by stile, metri, flag_vasca_corta, categoria
-;
+            select r2.id_record, u.username , r2.tempo, s.descrizione , r2.metri, r2.flag_vasca_corta, c.codice_categoria
+            from poseidonrecord.record r2
+            join (
+            select min(r.tempo) as tempo, r.stile, r.metri, r.flag_vasca_corta,r.categoria
+            from poseidonrecord.record r
+            group by r.stile, r.metri, r.flag_vasca_corta, r.categoria
+            )
+            as t on t.tempo = r2.tempo
+            inner join poseidonrecord.utenti u on r2.utente = u.id_utente
+            inner join poseidonrecord.categorie c on c.id_categoria = r2.categoria
+            inner join poseidonrecord.stili s on s.id_stile = r2.stile
+            ;
 
         */
 
 
-
-        return null;
+        return new ResponseEntity<>(recordDtoList, HttpStatus.OK);
     }
 
 }

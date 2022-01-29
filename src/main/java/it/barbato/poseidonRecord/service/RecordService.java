@@ -55,4 +55,9 @@ public class RecordService {
                 , record.getStile().getId(), record.getMetri(),
                 record.getFlagVascaCorta());
     }
+
+    public List<Record> findRecordSocietari(){
+
+        return recordRepository.findSocietariAll();
+    }
 }

@@ -55,7 +55,7 @@ public interface RecordController {
     public ResponseEntity<?> addRecord(@RequestBody() NewRecordDto rec);
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/new")
+    @GetMapping("/record-societari")
     public ResponseEntity<?> getRecordSocietari();
 
 }
