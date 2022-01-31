@@ -6,6 +6,7 @@ import it.barbato.poseidonRecord.entity.*;
 import it.barbato.poseidonRecord.entity.Record;
 import it.barbato.poseidonRecord.entity.dto.NewRecordDto;
 import it.barbato.poseidonRecord.entity.dto.RecordDto;
+import it.barbato.poseidonRecord.entity.dto.RecordSocietarioDto;
 import it.barbato.poseidonRecord.repository.CategoriaRepository;
 import it.barbato.poseidonRecord.repository.StiliRepository;
 import it.barbato.poseidonRecord.service.RecordService;
@@ -132,10 +133,7 @@ public class RecordControllerImpl implements RecordController {
 
     @Override
     public ResponseEntity<?> getRecordSocietari() {
-        List<Record> recordDtoList = recordService.findRecordSocietari();
-
-
-
+        List<RecordSocietarioDto> recordDtoList = recordService.findRecordSocietari();
         /*
             select r2.id_record, u.username , r2.tempo, s.descrizione , r2.metri, r2.flag_vasca_corta, c.codice_categoria
             from poseidonrecord.record r2
@@ -151,8 +149,6 @@ public class RecordControllerImpl implements RecordController {
             ;
 
         */
-
-
         return new ResponseEntity<>(recordDtoList, HttpStatus.OK);
     }
 

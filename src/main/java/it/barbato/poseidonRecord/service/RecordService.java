@@ -4,6 +4,7 @@ import it.barbato.poseidonRecord.converter.Converter;
 import it.barbato.poseidonRecord.entity.Record;
 import it.barbato.poseidonRecord.entity.Utenti;
 import it.barbato.poseidonRecord.entity.dto.RecordDto;
+import it.barbato.poseidonRecord.entity.dto.RecordSocietarioDto;
 import it.barbato.poseidonRecord.repository.RecordRepository;
 import it.barbato.poseidonRecord.specification.RecordSpecification;
 import it.barbato.poseidonRecord.utils.RecordFilter;
@@ -56,8 +57,8 @@ public class RecordService {
                 record.getFlagVascaCorta());
     }
 
-    public List<Record> findRecordSocietari(){
+    public List<RecordSocietarioDto> findRecordSocietari(){
 
-        return recordRepository.findSocietariAll();
+        return Converter.recordListToRecordDtoList(recordRepository.findSocietariAll());
     }
 }

@@ -7,6 +7,7 @@ import it.barbato.poseidonRecord.entity.Utenti;
 import it.barbato.poseidonRecord.entity.dto.GaraDto;
 import it.barbato.poseidonRecord.entity.dto.NewRecordDto;
 import it.barbato.poseidonRecord.entity.dto.RecordDto;
+import it.barbato.poseidonRecord.entity.dto.RecordSocietarioDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,32 @@ public class Converter {
         });
         recordDto.setGare(garaDtoList);
         return recordDto;
+    }
+
+
+    public static List<RecordSocietarioDto> recordListToRecordDtoList(List<Record> recordList){
+
+        List<RecordSocietarioDto> recordSocietarioDtoList = new ArrayList<>();
+
+        recordList.forEach(record -> {
+            RecordSocietarioDto recordSocietarioDto = new RecordSocietarioDto();
+
+            recordSocietarioDto.setNome(record.getUtente().getNome());
+            recordSocietarioDto.setCognome(record.getUtente().getCognome());
+            recordSocietarioDto.setCodiceSesso(record.getUtente().getCodiceSesso());
+            recordSocietarioDto.setUsername(record.getUtente().getUsername());
+
+            GaraDto garaDto = new GaraDto();
+            garaDto.setNomeGara(record.getMetri() + " " + record.getStile().getDescrizione());
+            garaDto.setVasca(record.getFlagVascaCorta()==1 ? "Corta" : "Lunga");
+            garaDto.setCategoria(record.getCategoria().getCodiceCategoria());
+            garaDto.setTempo(record.getTempo());
+
+            recordSocietarioDto.setGara(garaDto);
+
+            recordSocietarioDtoList.add(recordSocietarioDto);
+        });
+        return recordSocietarioDtoList;
     }
 
 
