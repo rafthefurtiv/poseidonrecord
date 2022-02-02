@@ -114,14 +114,14 @@ public class RecordControllerImpl implements RecordController {
             oldrecord.setTempo(newRecord.getTempo());
             recordService.save(oldrecord);
 
-            esito.setMessage("Il record  stato aggiornato.");
+            esito.setMessage("Il record è stato aggiornato");
             esito.setEsito(true);
             return new ResponseEntity<Esito>(esito, HttpStatus.OK);
         }
         else if (oldrecord == null){
             recordService.save(newRecord);
 
-            esito.setMessage("Nuovo record inserito.");
+            esito.setMessage("Nuovo record inserito");
             esito.setEsito(true);
             return new ResponseEntity<Esito>(esito, HttpStatus.OK);
         }
