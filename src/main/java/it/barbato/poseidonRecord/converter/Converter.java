@@ -76,6 +76,8 @@ public class Converter {
             garaDto.setVasca(record.getFlagVascaCorta()==1 ? "Corta" : "Lunga");
             garaDto.setCategoria(record.getCategoria().getCodiceCategoria());
             garaDto.setTempo(record.getTempo());
+            garaDto.setMetri(record.getMetri().toString());
+            garaDto.setStile(record.getStile().getDescrizione());
 
             recordSocietarioDto.setGara(garaDto);
 

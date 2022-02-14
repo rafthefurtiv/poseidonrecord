@@ -6,6 +6,9 @@ public class GaraDto {
     private String vasca;
     private String categoria;
     private Double tempo;
+    private String metri;
+    private String stile;
+
 
     public String getNomeGara() {
         return nomeGara;
@@ -37,5 +40,21 @@ public class GaraDto {
 
     public void setTempo(Double tempo) {
         this.tempo = tempo;
+    }
+
+    public String getMetri() {
+        return metri;
+    }
+
+    public void setMetri(String metri) {
+        this.metri = metri;
+    }
+
+    public String getStile() {
+        return stile;
+    }
+
+    public void setStile(String stile) {
+        this.stile = stile;
     }
 }
