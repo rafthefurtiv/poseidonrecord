@@ -2,6 +2,7 @@ package it.barbato.poseidonRecord.controller;
 
 import it.barbato.poseidonRecord.entity.Record;
 import it.barbato.poseidonRecord.entity.importt.UtentiImport;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public interface ImportazioneController {
     public List<Record> importUser(
             @RequestBody String inputData
     );
+
+    @GetMapping("/backup")
+    public ResponseEntity backup();
 
 
 }

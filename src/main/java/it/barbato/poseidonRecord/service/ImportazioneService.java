@@ -135,4 +135,25 @@ public class ImportazioneService {
         String stile = nomeGara.substring(nomeGara.indexOf(" ")+1);
         return stile;
     }
+
+    public void backUp(){
+        String dbName = "poseidonRecord";
+        String dbUser = "poseidon";
+        String dbPass = "admin";
+        String filePath = "/roor/poseidonDump.sql";
+        int status ;
+        String executeCmd = "mysqldump -u " + dbUser + " -p" + dbPass + " " + dbName + " -r " + filePath;
+
+        try {
+            Process runtimeProcess = Runtime.getRuntime().exec(executeCmd);
+            status = runtimeProcess.waitFor();
+            if (status == 0) {
+                System.out.println("Backup taken successfully");
+            } else {
+                System.out.println("Could not take mysql backup");
+            }
+        } catch (Exception e) {
+            System.out.println("Exception " + e);
+        }
+    }
 }
