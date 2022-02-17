@@ -5,10 +5,8 @@ import it.barbato.poseidonRecord.entity.Record;
 import it.barbato.poseidonRecord.entity.Stili;
 import it.barbato.poseidonRecord.entity.dto.NewRecordDto;
 import it.barbato.poseidonRecord.entity.dto.RecordDto;
-import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 import java.util.Map;
