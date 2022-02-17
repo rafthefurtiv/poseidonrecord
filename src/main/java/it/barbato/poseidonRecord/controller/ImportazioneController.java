@@ -8,14 +8,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/import")
 public interface ImportazioneController {
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/utenti")
     public List<Record> importUser(
             @RequestBody String inputData
     );
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/backup")
     public ResponseEntity backup();
 
