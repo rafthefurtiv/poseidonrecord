@@ -14,8 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -140,9 +144,14 @@ public class ImportazioneService {
         String dbName = "poseidonRecord";
         String dbUser = "poseidon";
         String dbPass = "admin";
-        String filePath = "/roor/poseidonDump.sql";
         int status ;
+        Date today = new Date();
+        DateFormat df = new SimpleDateFormat("dd_MM_yyyy");
+        String formattedDate = df.format(today);
+
+        String filePath = "/root/poseidonDump_"+formattedDate+".sql";
         String executeCmd = "mysqldump -u " + dbUser + " -p" + dbPass + " " + dbName + " -r " + filePath;
+
 
         try {
             Process runtimeProcess = Runtime.getRuntime().exec(executeCmd);

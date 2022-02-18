@@ -4,10 +4,7 @@ import it.barbato.poseidonRecord.entity.Categorie;
 import it.barbato.poseidonRecord.entity.Record;
 import it.barbato.poseidonRecord.entity.Stili;
 import it.barbato.poseidonRecord.entity.Utenti;
-import it.barbato.poseidonRecord.entity.dto.GaraDto;
-import it.barbato.poseidonRecord.entity.dto.NewRecordDto;
-import it.barbato.poseidonRecord.entity.dto.RecordDto;
-import it.barbato.poseidonRecord.entity.dto.RecordSocietarioDto;
+import it.barbato.poseidonRecord.entity.dto.*;
 
 import java.util.ArrayList;
 import java.util.List;
