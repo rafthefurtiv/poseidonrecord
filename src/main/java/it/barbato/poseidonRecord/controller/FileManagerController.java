@@ -14,12 +14,13 @@ public interface FileManagerController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping(value = "/list", produces = "application/json")
-    public ResponseEntity<?> fileList();
+    public ResponseEntity<?> fileList(@RequestParam(defaultValue = "/root/startList") String path)  throws IOException;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/download/{fileName}")
     public ResponseEntity<?> download(
-            @PathVariable String fileName
+            @PathVariable String fileName,
+            @RequestParam(defaultValue = "/root/startList") String path
     ) throws IOException;
 
 }

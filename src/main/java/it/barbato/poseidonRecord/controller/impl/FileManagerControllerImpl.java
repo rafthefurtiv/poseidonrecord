@@ -27,12 +27,16 @@ public class FileManagerControllerImpl implements FileManagerController {
 
 
     @Override
-    public ResponseEntity<?> fileList() {
-        System.out.println("fileList");
+    public ResponseEntity<?> fileList(String path) throws IOException {
+        System.out.println("fileList to ".concat(path));
 
         List<FileDto> results = new ArrayList<>();
 
-        File[] files = new File("/root/startList").listFiles();
+        File[] files = new File(path).listFiles();
+
+        if(files == null || files.length <= 0){
+            throw new IOException("Path: ".concat(path).concat(" non trovato."));
+        }
 
         for (File file : files) {
             if (file.isFile()) {
@@ -44,7 +48,7 @@ public class FileManagerControllerImpl implements FileManagerController {
     }
 
     @Override
-    public ResponseEntity<?> download(String fileName) throws IOException {
+    public ResponseEntity<?> download(String fileName, String path) throws IOException {
         System.out.println("download");
 
         HttpHeaders head = new HttpHeaders();
@@ -52,7 +56,7 @@ public class FileManagerControllerImpl implements FileManagerController {
         head.add("x-filename", fileName);
         head.add("Content-Disposition", "attachment; filename=" + fileName);
 
-        File file = new File("C:/root/startList/".concat(fileName));
+        File file = new File(path.concat("/").concat(fileName));
         byte[] fileByte = null;
         if(file != null && file.exists() && file.isFile()){
             InputStream inputStream = new FileInputStream(file);
