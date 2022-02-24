@@ -6,6 +6,8 @@ public class Esito {
 
     Boolean esito;
 
+    Boolean superUser;
+
     public String getMessage() {
         return message;
     }
@@ -20,5 +22,13 @@ public class Esito {
 
     public void setEsito(Boolean esito) {
         this.esito = esito;
+    }
+
+    public Boolean getSuperUser() {
+        return superUser;
+    }
+
+    public void setSuperUser(Boolean superUser) {
+        this.superUser = superUser;
     }
 }

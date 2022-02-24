@@ -108,8 +108,11 @@ insert into poseidonRecord.categorie (codice_categoria) values ("M95");
 -- insert into poseidonRecord.record (utente, metri, stile, flag_vasca_corta, flag_societario, categoria, tempo)
 -- values (3, 200, 2, 1, 0, 4, 33.54);
 
+alter table poseidonrecord.utenti add super_user INT;
 
-
+update poseidonrecord.utenti
+set super_user = 1
+where username in ('Renegade', 'Ragioniere', 'ClaudiaPezone');
 
 
 

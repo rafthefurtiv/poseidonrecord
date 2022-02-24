@@ -51,6 +51,7 @@ public class UtentiControllerImpl implements UtentiController {
         }
 
         esito.setEsito(true);
+        esito.setSuperUser(ut.getSuperUser() != null && ut.getSuperUser() == 1 ? true : false);
         return new ResponseEntity<Esito>(esito, HttpStatus.OK);
     }
 }

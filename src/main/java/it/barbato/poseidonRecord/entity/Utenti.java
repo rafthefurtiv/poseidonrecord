@@ -52,6 +52,9 @@ public class Utenti {
     @Column(name = "descrizione", length = 1024)
     private String descrizione;
 
+    @Column(name = "super_user")
+    private Integer superUser;
+
     public String getDescrizione() {
         return descrizione;
     }
@@ -162,5 +165,13 @@ public class Utenti {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getSuperUser() {
+        return superUser;
+    }
+
+    public void setSuperUser(Integer superUser) {
+        this.superUser = superUser;
     }
 }
