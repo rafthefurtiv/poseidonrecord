@@ -16,7 +16,7 @@ public interface RecordRepository extends MineRepository<Record, Integer> {
     @Query(value = "select r2.*\n" +
             "from record r2\n" +
             "join (\n" +
-            "select min(r.tempo) as tempo, r.stile, r.metri, r.flag_vasca_corta, r.categoria, u2.codice_sesso, id_record, utente  \n" +
+            "select min(r.tempo) as tempo, r.stile, r.metri, r.flag_vasca_corta, r.categoria, u2.codice_sesso, r.id_record, r.utente  \n" +
             "from record r\n" +
             "inner join utenti u2 on r.utente = u2.id_utente \n" +
             "group by r.stile, r.metri, r.flag_vasca_corta, r.categoria, u2.codice_sesso \n" +
