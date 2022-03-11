@@ -16,12 +16,12 @@ public interface RecordRepository extends MineRepository<Record, Integer> {
     @Query(value = "select r2.*\n" +
             "from record r2\n" +
             "join (\n" +
-            "select min(r.tempo) as tempo, r.stile, r.metri, r.flag_vasca_corta, r.categoria, u2.codice_sesso \n" +
+            "select min(r.tempo) as tempo, r.stile, r.metri, r.flag_vasca_corta, r.categoria, u2.codice_sesso, id_record, utente  \n" +
             "from record r\n" +
             "inner join utenti u2 on r.utente = u2.id_utente \n" +
             "group by r.stile, r.metri, r.flag_vasca_corta, r.categoria, u2.codice_sesso \n" +
             ")\n" +
-            "as t on t.tempo = r2.tempo \n" +
+            "as t on r.utente = u2.id_utente  \n" +
             "inner join utenti u on r2.utente = u.id_utente \n" +
             "inner join categorie c on c.id_categoria = r2.categoria \n" +
             "inner join stili s on s.id_stile = r2.stile \n", nativeQuery = true)
