@@ -21,7 +21,7 @@ public interface RecordRepository extends MineRepository<Record, Integer> {
             "inner join utenti u2 on r.utente = u2.id_utente \n" +
             "group by r.stile, r.metri, r.flag_vasca_corta, r.categoria, u2.codice_sesso \n" +
             ")\n" +
-            "as t on r.utente = u2.id_utente  \n" +
+            "as t on t.id_record = r2.id_record  \n" +
             "inner join utenti u on r2.utente = u.id_utente \n" +
             "inner join categorie c on c.id_categoria = r2.categoria \n" +
             "inner join stili s on s.id_stile = r2.stile \n", nativeQuery = true)
