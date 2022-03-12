@@ -14,7 +14,7 @@ public interface ImportazioneController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/utenti")
-    public List<Record> importUser(
+    public ResponseEntity importUser(
             @RequestBody String inputData
     );
 
