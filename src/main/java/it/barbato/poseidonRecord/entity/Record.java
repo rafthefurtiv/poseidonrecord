@@ -36,7 +36,7 @@ public class Record {
     @JoinColumn(name = "categoria", nullable = false)
     private Categorie categoria;
 
-    @Column(name = "note", nullable = false,  length = 100)
+    @Column(name = "note", length = 100)
     private String note;
 
     public Categorie getCategoria() {
