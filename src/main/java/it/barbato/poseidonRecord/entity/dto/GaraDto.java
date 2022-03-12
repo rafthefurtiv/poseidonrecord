@@ -8,6 +8,7 @@ public class GaraDto {
     private Double tempo;
     private String metri;
     private String stile;
+    private String note;
 
 
     public String getNomeGara() {
@@ -56,5 +57,13 @@ public class GaraDto {
 
     public void setStile(String stile) {
         this.stile = stile;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

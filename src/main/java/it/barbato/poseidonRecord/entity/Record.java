@@ -36,6 +36,9 @@ public class Record {
     @JoinColumn(name = "categoria", nullable = false)
     private Categorie categoria;
 
+    @Column(name = "note", nullable = false,  length = 100)
+    private String note;
+
     public Categorie getCategoria() {
         return categoria;
     }
@@ -98,5 +101,13 @@ public class Record {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

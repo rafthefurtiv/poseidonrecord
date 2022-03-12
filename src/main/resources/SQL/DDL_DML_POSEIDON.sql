@@ -109,6 +109,7 @@ insert into poseidonRecord.categorie (codice_categoria) values ("M95");
 -- values (3, 200, 2, 1, 0, 4, 33.54);
 
 alter table poseidonrecord.utenti add super_user INT;
+alter table poseidonrecord.record add note VARCHAR(100);
 
 update poseidonrecord.utenti
 set super_user = 1

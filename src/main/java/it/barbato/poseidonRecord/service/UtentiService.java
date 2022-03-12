@@ -25,6 +25,10 @@ public class UtentiService {
         return utentiRepository.findAll();
     }
 
+    public List<Utenti> findAllOrdered() {
+        return utentiRepository.findAllOrdered();
+    }
+
     public void saveUtente(Utenti utente){
         utentiRepository.save(utente);
     }

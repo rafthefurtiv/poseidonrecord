@@ -11,6 +11,7 @@ public class NewRecordDto {
     private Integer minuti;
     private Integer secondi;
     private Integer centesimi;
+    private String note;
 
     public Integer getIdUtente() {
         return idUtente;
@@ -74,5 +75,13 @@ public class NewRecordDto {
 
     public void setVasca(Integer vasca) {
         this.vasca = vasca;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 }

@@ -68,7 +68,7 @@ public class RecordControllerImpl implements RecordController {
 
     public List<RecordDto> getRecords(){
         logger.debug("getrecords");
-        List<Utenti> utentiList = utentiService.findAll();
+        List<Utenti> utentiList = utentiService.findAllOrdered();
         List<Record> recordList = recordService.findAll();
 
         List<RecordDto> recordDtoList = recordService.getAllRecordDtoList(utentiList, recordList);
