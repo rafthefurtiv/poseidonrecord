@@ -22,7 +22,7 @@ public class UtentiService {
     }
 
     public List<Utenti> findAll() {
-        return utentiRepository.findAll();
+        return utentiRepository.findAllSorted();
     }
 
     public List<Utenti> findAllOrdered() {

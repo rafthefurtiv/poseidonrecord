@@ -9,6 +9,9 @@ public interface UtentiRepository extends MineRepository<Utenti, Integer> {
 
     List<Utenti> findAll();
 
+    @Query("select u from Utenti u order by u.nome, u.cognome")
+    List<Utenti> findAllSorted();
+
     @Query("select u from Utenti u where u.id = :id")
     Utenti findByIdUtente(Integer id);
 
