@@ -1,0 +1,8 @@
+spring.datasource.url=jdbc:mariadb://195.20.241.70:3306/poseidonRecord
+spring.datasource.username=poseidon
+spring.datasource.password=admin
+spring.datasource.driver-class-name=org.mariadb.jdbc.Driver
+#spring.jpa.hibernate.ddl-auto=create-drop
+server.servlet.context-path=/poseidonRecord
+server.context-path=/poseidonRecord
+server.contextPath=/poseidonRecord

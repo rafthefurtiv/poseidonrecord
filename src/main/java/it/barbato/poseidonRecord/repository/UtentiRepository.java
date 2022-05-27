@@ -9,7 +9,8 @@ public interface UtentiRepository extends MineRepository<Utenti, Integer> {
 
     List<Utenti> findAll();
 
-    @Query("select u from Utenti u order by u.nome, u.cognome")
+    // Uso super user a null per gli atleti disattivati
+    @Query("select u from Utenti u where u.superUser >= 0 order by u.nome, u.cognome")
     List<Utenti> findAllSorted();
 
     @Query("select u from Utenti u where u.id = :id")
