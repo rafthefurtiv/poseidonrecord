@@ -13,6 +13,7 @@ public interface MacchineController {
     @GetMapping("/utenti")
     public ResponseEntity<?> findMacchineUtenti();
 
+    // Not used
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping()
     public ResponseEntity<?> findMacchine();
@@ -32,9 +33,10 @@ public interface MacchineController {
                                            @RequestParam Boolean andata,
                                            @RequestParam Boolean ritorno) throws Exception;
 
+    // Not used
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/passeggero/{user}/macchina/{idMacchina}")
-    public ResponseEntity<?> deletePasseggero(@PathVariable String user,
+    public ResponseEntity<?> deletePasseggero(@PathVariable Integer user,
                                               @PathVariable Integer idMacchina,
                                               @RequestParam Boolean andata,
                                               @RequestParam Boolean ritorno);

@@ -53,6 +53,7 @@ public class MacchineUtentiService {
 
         MacchineUtenti macchineUtenti = macchineUtentiRepository.findByPasseggero(user);
 
+
         if(macchineUtenti == null){
             macchineUtenti = new MacchineUtenti();
 
@@ -72,6 +73,11 @@ public class MacchineUtentiService {
 
         macchineUtenti.setAndata(andata);
         macchineUtenti.setRitorno(ritorno);
+
+        List<MacchineUtenti> macchineUtentiList = macchineUtentiRepository.findByMacchina(idMacchina);
+        if(macchineUtentiList.size() > macchine.getPosti()){
+            throw new Exception("Macchina piena");
+        }
 
         return macchineUtentiRepository.save(macchineUtenti);
     }

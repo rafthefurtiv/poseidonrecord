@@ -100,8 +100,21 @@ public class MacchineControllerImpl implements MacchineController {
     }
 
     @Override
-    public ResponseEntity<?> deletePasseggero(String user, Integer idMacchina, Boolean andata, Boolean ritorno) {
+    public ResponseEntity<?> deletePasseggero(Integer user, Integer idMacchina, Boolean andata, Boolean ritorno) {
         // Forse da eliminare
-        return null;
+
+        Utenti u = utentiService.findByIdUtente(user);
+        if(u == null){
+            return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
+        }
+
+        Macchine macchine = macchineService.findByIdProprietario(u.getId());
+        if(macchine == null){
+            return new ResponseEntity<>(new String("Macchina non esistente"), HttpStatus.NOT_FOUND);
+        }
+
+        macchineUtentiService.eliminaMacchineUtente(u);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 }
