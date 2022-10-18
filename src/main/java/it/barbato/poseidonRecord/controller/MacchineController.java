@@ -23,6 +23,10 @@ public interface MacchineController {
     public ResponseEntity<?> addMacchina(@RequestBody Macchine macchina) throws Exception;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PutMapping("/macchina")
+    public ResponseEntity<?> updateMacchina(@RequestBody Macchine macchina) throws Exception;
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @DeleteMapping("/macchina/utente/{idUtente}")
     public ResponseEntity<?> deleteMacchina(@RequestParam Integer utente) throws Exception;
 

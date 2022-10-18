@@ -57,6 +57,24 @@ public class MacchineControllerImpl implements MacchineController {
     }
 
     @Override
+    public ResponseEntity<?> updateMacchina(Macchine macchina) throws Exception {
+
+        Utenti utente = utentiService.findByIdUtente(macchina.getProprietario().getId());
+        if(utente == null){
+            return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
+        }
+
+        Macchine macchine = macchineService.findByIdProprietario(macchina.getProprietario().getId());
+        if(macchine == null){
+            return new ResponseEntity<>(new String("Macchina non esistente"), HttpStatus.CONFLICT);
+        }
+
+        macchineService.update(macchine);
+
+        return null;
+    }
+
+    @Override
     public ResponseEntity<?> deleteMacchina(Integer utente) throws Exception {
 
         Utenti u = utentiService.findByIdUtente(utente);
