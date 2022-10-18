@@ -3,6 +3,7 @@ package it.barbato.poseidonRecord.entity;
 import javax.persistence.*;
 import java.util.List;
 
+
 /*
 @Table(name = "macchine", indexes = {
         @Index(name = "utenti_unique_email", columnList = "email", unique = true),
@@ -10,6 +11,7 @@ import java.util.List;
 })
 
  */
+
 @Entity
 public class Macchine {
     @Id
@@ -32,8 +34,12 @@ public class Macchine {
     @Column(name = "proprietario", nullable = false)
     private Utenti proprietario;
 
-    @JoinColumn(name = "passeggeri", nullable = false)
-    private List<Utenti> passeggeri;
+    @Column(name = "andata", nullable = false)
+    private Boolean andata;
+
+    @Column(name = "ritorno", nullable = false)
+    private Boolean ritorno;
+
 
 
     public Integer getId() {
@@ -84,11 +90,19 @@ public class Macchine {
         this.proprietario = proprietario;
     }
 
-    public List<Utenti> getPasseggeri() {
-        return passeggeri;
+    public Boolean getAndata() {
+        return andata;
     }
 
-    public void setPasseggeri(List<Utenti> passeggeri) {
-        this.passeggeri = passeggeri;
+    public void setAndata(Boolean andata) {
+        this.andata = andata;
+    }
+
+    public Boolean getRitorno() {
+        return ritorno;
+    }
+
+    public void setRitorno(Boolean ritorno) {
+        this.ritorno = ritorno;
     }
 }

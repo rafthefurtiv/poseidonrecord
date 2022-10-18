@@ -1,11 +1,8 @@
 package it.barbato.poseidonRecord.controller;
-
 import it.barbato.poseidonRecord.entity.Macchine;
-import it.barbato.poseidonRecord.entity.Utenti;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -13,14 +10,33 @@ import java.util.List;
 public interface MacchineController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/utenti")
+    public ResponseEntity<?> findMacchineUtenti();
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping()
-    public Macchine findMacchine();
+    public ResponseEntity<?> findMacchine();
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/macchine/passeggerp")
-    public List<Utenti> addPasseggero();
+    @PostMapping("/macchina")
+    public ResponseEntity<?> addMacchina(@RequestBody Macchine macchina) throws Exception;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/login")
-    public ResponseEntity<?> getAuth(@RequestParam("user") String user, @RequestParam("pass") String password) throws Exception;
+    @DeleteMapping("/macchina/utente/{idUtente}")
+    public ResponseEntity<?> deleteMacchina(@RequestParam Integer utente) throws Exception;
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PostMapping("/passeggero/{user}/macchina/{idMacchina}")
+    public ResponseEntity<?> updatePasseggero(@PathVariable Integer user,
+                                           @PathVariable Integer idMacchina,
+                                           @RequestParam Boolean andata,
+                                           @RequestParam Boolean ritorno) throws Exception;
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @DeleteMapping("/passeggero/{user}/macchina/{idMacchina}")
+    public ResponseEntity<?> deletePasseggero(@PathVariable String user,
+                                              @PathVariable Integer idMacchina,
+                                              @RequestParam Boolean andata,
+                                              @RequestParam Boolean ritorno);
+
 }
