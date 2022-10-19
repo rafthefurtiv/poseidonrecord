@@ -63,11 +63,11 @@ public class MacchineService {
 
 
         if(newMacchina.getPostiAndata() < postiOccupatiAndata){
-
+            // TODO capire se necessario introdurre una data per eliminare gli ultimi che si sono aggiunti
+            // TODO capire se avvisare tramite mail chi è stato eliminato
             macchineUtentiAndataList.stream().skip(newMacchina.getPostiAndata()).forEach(p -> {macchineUtentiRepository.delete(p);});
             throw new Exception("posti gia occupati");
         }
-
 
         if(newMacchina.getPostiRitorno() < postiOccupatiRitorno){
 
