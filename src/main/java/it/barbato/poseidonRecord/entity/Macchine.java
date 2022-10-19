@@ -22,8 +22,11 @@ public class Macchine {
     @Column(name = "nome", nullable = false, length = 100)
     private String nome;
 
-    @Column(name = "posti", nullable = false)
-    private Integer posti;
+    @Column(name = "posti_andata", nullable = false)
+    private Integer postiAndata;
+
+    @Column(name = "posti_ritorno", nullable = false)
+    private Integer postiRitorno;
 
     @Column(name = "tipo", nullable = false)
     private Integer tipo;
@@ -58,12 +61,20 @@ public class Macchine {
         this.nome = nome;
     }
 
-    public Integer getPosti() {
-        return posti;
+    public Integer getPostiAndata() {
+        return postiAndata;
     }
 
-    public void setPosti(Integer posti) {
-        this.posti = posti;
+    public void setPostiAndata(Integer postiAndata) {
+        this.postiAndata = postiAndata;
+    }
+
+    public Integer getPostiRitorno() {
+        return postiRitorno;
+    }
+
+    public void setPostiRitorno(Integer postiRitorno) {
+        this.postiRitorno = postiRitorno;
     }
 
     public Integer getTipo() {

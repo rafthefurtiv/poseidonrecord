@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MacchineService {
@@ -54,19 +55,34 @@ public class MacchineService {
 
         List<MacchineUtenti> macchineUtentiList = macchineUtentiRepository.findByMacchina(newMacchina.getId());
 
+        List<MacchineUtenti> macchineUtentiAndataList = macchineUtentiList.stream().filter(p -> p.getAndata()).collect(Collectors.toList());
+        List<MacchineUtenti> macchineUtentiRitornoList = macchineUtentiList.stream().filter(p -> p.getRitorno()).collect(Collectors.toList());
 
-        if(newMacchina.getPosti() < macchineUtentiList.size()){
+        Integer postiOccupatiAndata = macchineUtentiAndataList.size();
+        Integer postiOccupatiRitorno = macchineUtentiRitornoList.size();
+
+
+        if(newMacchina.getPostiAndata() < postiOccupatiAndata){
+
+            macchineUtentiAndataList.stream().skip(newMacchina.getPostiAndata()).forEach(p -> {macchineUtentiRepository.delete(p);});
             throw new Exception("posti gia occupati");
         }
 
+
+        if(newMacchina.getPostiRitorno() < postiOccupatiRitorno){
+
+            //Integer postiDaEliminare = postiOccupatiRitorno - newMacchina.getPostiRitorno();
+            macchineUtentiRitornoList.stream().skip(newMacchina.getPostiRitorno()).forEach(p -> {macchineUtentiRepository.delete(p);});
+            //throw new Exception("posti gia occupati");
+        }
+
         if(!newMacchina.getAndata() && macchina.getAndata()){
-            throw new Exception("posti gia occupati per andata");
+            macchineUtentiAndataList.stream().forEach(p -> {macchineUtentiRepository.delete(p);});
         }
 
         if(!newMacchina.getRitorno() && macchina.getRitorno()){
-            throw new Exception("posti gia occupati per ritorno");
+            macchineUtentiRitornoList.stream().forEach(p -> {macchineUtentiRepository.delete(p);});
         }
-
 
         macchineRepository.save(newMacchina);
     }
