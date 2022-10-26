@@ -1,9 +1,7 @@
 package it.barbato.poseidonRecord.converter;
 
-import it.barbato.poseidonRecord.entity.Categorie;
+import it.barbato.poseidonRecord.entity.*;
 import it.barbato.poseidonRecord.entity.Record;
-import it.barbato.poseidonRecord.entity.Stili;
-import it.barbato.poseidonRecord.entity.Utenti;
 import it.barbato.poseidonRecord.entity.dto.*;
 
 import java.util.ArrayList;
@@ -111,6 +109,28 @@ public class Converter {
         record.setNote(newRecordDto.getNote());
 
         return record;
+    }
+
+    public static Macchine convertAddMacchineDtoToMacchine(AddMacchinaDto addMacchinaDto){
+
+        if(addMacchinaDto == null){return null;}
+
+        Macchine macchine = new Macchine();
+
+        Utenti proprietario = new Utenti();
+        proprietario.setId(addMacchinaDto.getProprietario());
+        macchine.setProprietario(proprietario);
+
+        macchine.setNome(addMacchinaDto.getNome());
+        macchine.setPostiAndata(addMacchinaDto.getPostiAndata());
+        macchine.setPostiRitorno(addMacchinaDto.getPostiRitorno());
+        macchine.setNote(addMacchinaDto.getNote());
+        macchine.setAndata(addMacchinaDto.getAndata());
+        macchine.setRitorno(addMacchinaDto.getRitorno());
+        macchine.setTipo(addMacchinaDto.getTipo());
+
+        return macchine;
+
     }
 
 

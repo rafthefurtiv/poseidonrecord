@@ -1,6 +1,7 @@
 package it.barbato.poseidonRecord.service;
 import it.barbato.poseidonRecord.entity.Macchine;
 import it.barbato.poseidonRecord.entity.MacchineUtenti;
+import it.barbato.poseidonRecord.entity.Utenti;
 import it.barbato.poseidonRecord.repository.MacchineRepository;
 import it.barbato.poseidonRecord.repository.MacchineUtentiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class MacchineService {
     }
 
     @Transactional
-    public Macchine findByIdProprietario(Integer proprietario) {
+    public Macchine findByIdProprietario(Utenti proprietario) {
         return macchineRepository.findByProprietario(proprietario);
     }
 
@@ -53,7 +54,7 @@ public class MacchineService {
             throw new Exception("macchina non esistente");
         }
 
-        List<MacchineUtenti> macchineUtentiList = macchineUtentiRepository.findByMacchina(newMacchina.getId());
+        List<MacchineUtenti> macchineUtentiList = macchineUtentiRepository.findByMacchina(macchina);
 
         List<MacchineUtenti> macchineUtentiAndataList = macchineUtentiList.stream().filter(p -> p.getAndata()).collect(Collectors.toList());
         List<MacchineUtenti> macchineUtentiRitornoList = macchineUtentiList.stream().filter(p -> p.getRitorno()).collect(Collectors.toList());

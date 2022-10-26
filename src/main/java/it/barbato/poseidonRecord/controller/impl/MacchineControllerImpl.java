@@ -1,8 +1,10 @@
 package it.barbato.poseidonRecord.controller.impl;
 
 import it.barbato.poseidonRecord.controller.MacchineController;
+import it.barbato.poseidonRecord.converter.Converter;
 import it.barbato.poseidonRecord.entity.Macchine;
 import it.barbato.poseidonRecord.entity.Utenti;
+import it.barbato.poseidonRecord.entity.dto.AddMacchinaDto;
 import it.barbato.poseidonRecord.entity.dto.MacchineUtentiDto;
 import it.barbato.poseidonRecord.service.MacchineService;
 import it.barbato.poseidonRecord.service.MacchineUtentiService;
@@ -39,35 +41,39 @@ public class MacchineControllerImpl implements MacchineController {
     }
 
     @Override
-    public ResponseEntity<?> addMacchina(Macchine macchina) throws Exception {
+    public ResponseEntity<?> addMacchina(AddMacchinaDto macchina) throws Exception {
 
-        Utenti utente = utentiService.findByIdUtente(macchina.getProprietario().getId());
+        Utenti utente = utentiService.findByIdUtente(macchina.getProprietario());
         if(utente == null){
             return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
         }
 
-        Macchine macchine = macchineService.findByIdProprietario(macchina.getProprietario().getId());
+        Macchine macchine = macchineService.findByIdProprietario(utente);
         if(macchine != null){
             return new ResponseEntity<>(new String("Macchina esistente"), HttpStatus.CONFLICT);
         }
 
-        macchineService.save(macchina);
+        Macchine macchinaToSave = Converter.convertAddMacchineDtoToMacchine(macchina);
+
+        macchineService.save(macchinaToSave);
         List<Macchine> macchineList = macchineService.findAll();
         return new ResponseEntity<>(macchineList, HttpStatus.OK);
     }
 
     @Override
-    public ResponseEntity<?> updateMacchina(Macchine macchina) throws Exception {
+    public ResponseEntity<?> updateMacchina(AddMacchinaDto macchina) throws Exception {
 
-        Utenti utente = utentiService.findByIdUtente(macchina.getProprietario().getId());
+        Utenti utente = utentiService.findByIdUtente(macchina.getProprietario());
         if(utente == null){
             return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
         }
 
-        Macchine macchine = macchineService.findByIdProprietario(macchina.getProprietario().getId());
+        Macchine macchine = macchineService.findByIdProprietario(utente);
         if(macchine == null){
             return new ResponseEntity<>(new String("Macchina non esistente"), HttpStatus.CONFLICT);
         }
+
+        macchine = Converter.convertAddMacchineDtoToMacchine(macchina);
 
         macchineService.update(macchine);
 
@@ -82,7 +88,7 @@ public class MacchineControllerImpl implements MacchineController {
             return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
         }
 
-        Macchine macchine = macchineService.findByIdProprietario(u.getId());
+        Macchine macchine = macchineService.findByIdProprietario(u);
         if(macchine == null){
             return new ResponseEntity<>(new String("Macchina non esistente"), HttpStatus.NOT_FOUND);
         }
@@ -102,7 +108,7 @@ public class MacchineControllerImpl implements MacchineController {
             return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
         }
 
-        Macchine macchine = macchineService.findByIdProprietario(u.getId());
+        Macchine macchine = macchineService.findByIdProprietario(u);
         if(macchine == null){
             return new ResponseEntity<>(new String("Macchina non esistente"), HttpStatus.NOT_FOUND);
         }
@@ -126,7 +132,7 @@ public class MacchineControllerImpl implements MacchineController {
             return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
         }
 
-        Macchine macchine = macchineService.findByIdProprietario(u.getId());
+        Macchine macchine = macchineService.findByIdProprietario(u);
         if(macchine == null){
             return new ResponseEntity<>(new String("Macchina non esistente"), HttpStatus.NOT_FOUND);
         }

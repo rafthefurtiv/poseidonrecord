@@ -12,15 +12,12 @@ import it.barbato.poseidonRecord.repository.StiliRepository;
 import it.barbato.poseidonRecord.service.RecordService;
 import it.barbato.poseidonRecord.service.UtentiService;
 import it.barbato.poseidonRecord.utils.RecordFilter;
-import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.spring.web.json.Json;
 
 import java.util.List;
 import java.util.Map;

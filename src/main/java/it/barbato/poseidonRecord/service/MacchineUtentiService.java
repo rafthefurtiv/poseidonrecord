@@ -8,7 +8,6 @@ import it.barbato.poseidonRecord.repository.MacchineUtentiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,8 +50,9 @@ public class MacchineUtentiService {
     @Transactional
     public MacchineUtenti save(Integer user, Integer idMacchina, Boolean andata, Boolean ritorno) throws Exception {
 
-        MacchineUtenti macchineUtenti = macchineUtentiRepository.findByPasseggero(user);
-
+        Utenti utenti = new Utenti();
+        utenti.setId(user);
+        MacchineUtenti macchineUtenti = macchineUtentiRepository.findByPasseggero(utenti);
 
         if(macchineUtenti == null){
             macchineUtenti = new MacchineUtenti();
@@ -64,7 +64,6 @@ public class MacchineUtentiService {
             macchineUtenti.setPasseggero(passeggero);
         }
 
-
         Macchine macchine = macchineService.findById(idMacchina);
         if(macchine == null){
             throw new Exception("Macchina inesistente");
@@ -74,9 +73,12 @@ public class MacchineUtentiService {
         macchineUtenti.setAndata(andata);
         macchineUtenti.setRitorno(ritorno);
 
-        List<MacchineUtenti> macchineUtentiList = macchineUtentiRepository.findByMacchina(idMacchina);
-        if(macchineUtentiList.size() > macchine.getPosti()){
-            throw new Exception("Macchina piena");
+        List<MacchineUtenti> macchineUtentiList = macchineUtentiRepository.findByMacchina(macchine);
+        if(macchineUtentiList.stream().filter(MacchineUtenti::getAndata).collect(Collectors.toList()).size() > macchine.getPostiAndata()){
+            throw new Exception("Macchina andata piena");
+        }
+        if(macchineUtentiList.stream().filter(MacchineUtenti::getRitorno).collect(Collectors.toList()).size() > macchine.getPostiAndata()){
+            throw new Exception("Macchina ritorno piena");
         }
 
         return macchineUtentiRepository.save(macchineUtenti);
@@ -93,7 +95,7 @@ public class MacchineUtentiService {
     @Transactional
     public void eliminaMacchineUtenti(Macchine macchina){
 
-        List<MacchineUtenti> macchineUtentiList = macchineUtentiRepository.findByMacchina(macchina.getId());
+        List<MacchineUtenti> macchineUtentiList = macchineUtentiRepository.findByMacchina(macchina);
 
         macchineUtentiList.forEach(mu -> {
             macchineUtentiRepository.delete(mu);
@@ -105,7 +107,7 @@ public class MacchineUtentiService {
     @Transactional
     public void eliminaMacchineUtente(Utenti utente){
 
-        MacchineUtenti macchineUtente = macchineUtentiRepository.findByPasseggero(utente.getId());
+        MacchineUtenti macchineUtente = macchineUtentiRepository.findByPasseggero(utente);
 
         macchineUtentiRepository.delete(macchineUtente);
 

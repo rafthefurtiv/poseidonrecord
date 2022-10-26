@@ -1,17 +1,8 @@
 package it.barbato.poseidonRecord.entity;
 
-import it.barbato.poseidonRecord.service.MacchineService;
-
 import javax.persistence.*;
-import java.util.List;
 
-/*
-@Table(name = "macchine", indexes = {
-        @Index(name = "utenti_unique_email", columnList = "email", unique = true),
-        @Index(name = "utenti_unique_username", columnList = "username", unique = true)
-})
-
- */
+@Table(name = "macchine_utenti")
 @Entity
 public class MacchineUtenti {
 
@@ -20,10 +11,12 @@ public class MacchineUtenti {
     @Column(name = "id_macchina_utente", nullable = false)
     private Integer id;
 
-    @Column(name = "macchina", nullable = false, length = 100)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "macchina", nullable = false)
     private Macchine macchina;
 
-    @Column(name = "passeggero", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "passeggero", nullable = false)
     private Utenti passeggero;
 
     @Column(name = "andata", nullable = false)
