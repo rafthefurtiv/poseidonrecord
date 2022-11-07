@@ -9,14 +9,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AddMacchinaDto {
 
-    private String nome;
-    Integer postiAndata;
-    Integer postiRitorno;
-    Integer tipo;
-    String note;
+    String nome;
     String proprietario;
     Integer idProprietario;
+    String username;
+    String auto;
     Boolean andata;
     Boolean ritorno;
+    Integer postiAndata;
+    Integer postiRitorno;
+    String note;
 
 }

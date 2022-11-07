@@ -41,8 +41,27 @@ public class MacchineUtentiService {
         macchineList.forEach(m -> {
             MacchineUtentiDto macchineUtentiDto = new MacchineUtentiDto();
             macchineUtentiDto.setMacchina(Converter.convertMacchinaToDto(m));
-            macchineUtentiDto.setMacchineUtentiListAndata(macchineUtentiList.stream().filter(mu -> mu.getMacchina().equals(m.getId())).filter(mu -> mu.getAndata()).collect(Collectors.toList()));
-            macchineUtentiDto.setMacchineUtentiListRitorno(macchineUtentiList.stream().filter(mu -> mu.getMacchina().equals(m.getId())).filter(mu -> mu.getRitorno()).collect(Collectors.toList()));
+            macchineUtentiDto.setMacchineUtentiListAndata(new ArrayList<>());
+            macchineUtentiDto.setMacchineUtentiListRitorno(new ArrayList<>());
+
+            List<MacchineUtenti> macchineUtentiListTemp = macchineUtentiList.stream().filter(mu -> mu.getMacchina().equals(m)).collect(Collectors.toList());
+            macchineUtentiListTemp = macchineUtentiListTemp.stream().filter(mu -> mu.getAndata().equals(true)).collect(Collectors.toList());
+
+            macchineUtentiListTemp.forEach(mu -> {
+                if(mu.getAndata()){
+                    macchineUtentiDto.getMacchineUtentiListAndata().add(mu.getPasseggero().getNome().concat(" ").concat(mu.getPasseggero().getCognome()));
+                }
+            });
+
+            macchineUtentiListTemp = macchineUtentiList.stream().filter(mu -> mu.getMacchina().equals(m)).collect(Collectors.toList());
+            macchineUtentiListTemp = macchineUtentiListTemp.stream().filter(mu -> mu.getRitorno().equals(true)).collect(Collectors.toList());
+
+            macchineUtentiListTemp.forEach(mu -> {
+                if(mu.getRitorno()){
+                    macchineUtentiDto.getMacchineUtentiListRitorno().add(mu.getPasseggero().getNome().concat(" ").concat(mu.getPasseggero().getCognome()));
+                }
+            });
+
             macchineUtentiDtoList.add(macchineUtentiDto);
         });
 

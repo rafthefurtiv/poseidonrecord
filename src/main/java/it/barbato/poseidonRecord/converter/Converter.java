@@ -112,6 +112,27 @@ public class Converter {
         return record;
     }
 
+    public static Macchine convertAddMacchineDtoToMacchine(AddMacchinaDto addMacchinaDto, Macchine macchina){
+
+        if(addMacchinaDto == null){return null;}
+
+        Macchine macchine = new Macchine();
+
+        Utenti proprietario = new Utenti();
+        proprietario.setId(addMacchinaDto.getIdProprietario());
+        macchine.setProprietario(proprietario);
+        macchine.setId(macchina.getId());
+        macchine.setNome(addMacchinaDto.getNome());
+        macchine.setPostiAndata(addMacchinaDto.getPostiAndata());
+        macchine.setPostiRitorno(addMacchinaDto.getPostiRitorno());
+        macchine.setNote(addMacchinaDto.getNote());
+        macchine.setAndata(addMacchinaDto.getAndata());
+        macchine.setRitorno(addMacchinaDto.getRitorno());
+        macchine.setTipo(addMacchinaDto.getAuto().equals("AUTO") ? 1 : 2);
+
+        return macchine;
+
+    }
     public static Macchine convertAddMacchineDtoToMacchine(AddMacchinaDto addMacchinaDto){
 
         if(addMacchinaDto == null){return null;}
@@ -121,14 +142,13 @@ public class Converter {
         Utenti proprietario = new Utenti();
         proprietario.setId(addMacchinaDto.getIdProprietario());
         macchine.setProprietario(proprietario);
-
         macchine.setNome(addMacchinaDto.getNome());
         macchine.setPostiAndata(addMacchinaDto.getPostiAndata());
         macchine.setPostiRitorno(addMacchinaDto.getPostiRitorno());
         macchine.setNote(addMacchinaDto.getNote());
         macchine.setAndata(addMacchinaDto.getAndata());
         macchine.setRitorno(addMacchinaDto.getRitorno());
-        macchine.setTipo(addMacchinaDto.getTipo());
+        macchine.setTipo(addMacchinaDto.getAuto().equals("AUTO") ? 1 : 2);
 
         return macchine;
 
@@ -141,6 +161,8 @@ public class Converter {
 
         MacchinaDto macchinaDto = modelMapper.map(macchina, MacchinaDto.class);
         macchinaDto.setProprietario(macchina.getProprietario().getNome().concat(" ").concat(macchina.getProprietario().getCognome()));
+        macchinaDto.setUsername(macchina.getProprietario().getUsername());
+        macchinaDto.setAuto(macchina.getTipo() == 1 ? "AUTO" : "MOTO");
 
         return macchinaDto;
     }

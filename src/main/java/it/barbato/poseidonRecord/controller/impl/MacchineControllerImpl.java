@@ -73,7 +73,7 @@ public class MacchineControllerImpl implements MacchineController {
             return new ResponseEntity<>(new String("Macchina non esistente"), HttpStatus.CONFLICT);
         }
 
-        macchine = Converter.convertAddMacchineDtoToMacchine(macchina);
+        macchine = Converter.convertAddMacchineDtoToMacchine(macchina, macchine);
 
         macchineService.update(macchine);
 

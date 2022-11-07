@@ -14,7 +14,7 @@ public class MacchineUtentiDto {
 
     MacchinaDto macchina;
 
-    List<MacchineUtenti> macchineUtentiListAndata;
-    List<MacchineUtenti> macchineUtentiListRitorno;
+    List<String> macchineUtentiListAndata;
+    List<String> macchineUtentiListRitorno;
 
 }

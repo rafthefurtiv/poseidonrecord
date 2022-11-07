@@ -14,11 +14,13 @@ public class MacchinaDto {
     String nome;
     String proprietario;
     Integer idProprietario;
-    Boolean auto;
+    String username;
+    String auto;
     Boolean andata;
     Boolean ritorno;
     Integer postiAndata;
     Integer postiRitorno;
+    String note;
 
     List<String> passeggeriAndata;
     List<String> passeggeriRitorno;
