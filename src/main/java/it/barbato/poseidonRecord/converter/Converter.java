@@ -3,6 +3,7 @@ package it.barbato.poseidonRecord.converter;
 import it.barbato.poseidonRecord.entity.*;
 import it.barbato.poseidonRecord.entity.Record;
 import it.barbato.poseidonRecord.entity.dto.*;
+import org.modelmapper.ModelMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,6 +133,19 @@ public class Converter {
         return macchine;
 
     }
+
+
+    public static MacchinaDto convertMacchinaToDto(Macchine macchina){
+
+        ModelMapper modelMapper = new ModelMapper();
+
+        MacchinaDto macchinaDto = modelMapper.map(macchina, MacchinaDto.class);
+        macchinaDto.setProprietario(macchina.getProprietario().getNome().concat(" ").concat(macchina.getProprietario().getCognome()));
+
+        return macchinaDto;
+    }
+
+
 
 
 }

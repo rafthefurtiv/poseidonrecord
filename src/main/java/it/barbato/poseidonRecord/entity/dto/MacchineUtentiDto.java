@@ -1,6 +1,5 @@
 package it.barbato.poseidonRecord.entity.dto;
 
-import it.barbato.poseidonRecord.entity.Macchine;
 import it.barbato.poseidonRecord.entity.MacchineUtenti;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class MacchineUtentiDto {
 
-    Macchine macchina;
+    MacchinaDto macchina;
 
     List<MacchineUtenti> macchineUtentiListAndata;
     List<MacchineUtenti> macchineUtentiListRitorno;
