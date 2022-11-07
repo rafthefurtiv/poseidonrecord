@@ -6,6 +6,7 @@ public class MacchinaDto {
 
     String nome;
     String proprietario;
+    Integer idProprietario;
     Boolean auto;
     Boolean andata;
     Boolean ritorno;

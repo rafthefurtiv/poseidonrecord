@@ -43,7 +43,7 @@ public class MacchineControllerImpl implements MacchineController {
     @Override
     public ResponseEntity<?> addMacchina(AddMacchinaDto macchina) throws Exception {
 
-        Utenti utente = utentiService.findByIdUtente(macchina.getProprietario());
+        Utenti utente = utentiService.findByIdUtente(macchina.getIdProprietario());
         if(utente == null){
             return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
         }
@@ -63,7 +63,7 @@ public class MacchineControllerImpl implements MacchineController {
     @Override
     public ResponseEntity<?> updateMacchina(AddMacchinaDto macchina) throws Exception {
 
-        Utenti utente = utentiService.findByIdUtente(macchina.getProprietario());
+        Utenti utente = utentiService.findByIdUtente(macchina.getIdProprietario());
         if(utente == null){
             return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
         }

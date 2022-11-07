@@ -40,7 +40,8 @@ public class MacchineUtentiService {
         macchineList.forEach(m -> {
             MacchineUtentiDto macchineUtentiDto = new MacchineUtentiDto();
             macchineUtentiDto.setMacchina(m);
-            macchineUtentiDto.setMacchineUtentiList(macchineUtentiList.stream().filter(mu -> mu.getMacchina().equals(m.getId())).collect(Collectors.toList()));
+            macchineUtentiDto.setMacchineUtentiListAndata(macchineUtentiList.stream().filter(mu -> mu.getMacchina().equals(m.getId())).filter(mu -> mu.getAndata()).collect(Collectors.toList()));
+            macchineUtentiDto.setMacchineUtentiListRitorno(macchineUtentiList.stream().filter(mu -> mu.getMacchina().equals(m.getId())).filter(mu -> mu.getRitorno()).collect(Collectors.toList()));
             macchineUtentiDtoList.add(macchineUtentiDto);
         });
 

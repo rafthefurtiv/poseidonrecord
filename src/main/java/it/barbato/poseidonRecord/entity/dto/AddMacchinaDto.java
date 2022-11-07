@@ -14,7 +14,8 @@ public class AddMacchinaDto {
     Integer postiRitorno;
     Integer tipo;
     String note;
-    Integer proprietario;
+    String proprietario;
+    Integer idProprietario;
     Boolean andata;
     Boolean ritorno;
 

@@ -118,7 +118,7 @@ public class Converter {
         Macchine macchine = new Macchine();
 
         Utenti proprietario = new Utenti();
-        proprietario.setId(addMacchinaDto.getProprietario());
+        proprietario.setId(addMacchinaDto.getIdProprietario());
         macchine.setProprietario(proprietario);
 
         macchine.setNome(addMacchinaDto.getNome());
