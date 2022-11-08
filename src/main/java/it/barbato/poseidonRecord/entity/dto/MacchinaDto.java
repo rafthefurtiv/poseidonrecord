@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class MacchinaDto {
 
+    Integer id;
     String nome;
     String proprietario;
     Integer idProprietario;

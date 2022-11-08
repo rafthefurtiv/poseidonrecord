@@ -32,8 +32,8 @@ public interface MacchineController {
     public ResponseEntity<?> deleteMacchina(@PathVariable(value = "idUtente") Integer utente) throws Exception;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping("/passeggero/{user}/macchina/{idMacchina}")
-    public ResponseEntity<?> updatePasseggero(@PathVariable Integer user,
+    @PostMapping("/passeggero/{username}/macchina/{idMacchina}")
+    public ResponseEntity<?> updatePasseggero(@PathVariable String username,
                                            @PathVariable Integer idMacchina,
                                            @RequestParam Boolean andata,
                                            @RequestParam Boolean ritorno) throws Exception;

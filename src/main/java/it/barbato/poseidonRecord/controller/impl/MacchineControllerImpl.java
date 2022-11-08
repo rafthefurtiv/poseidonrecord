@@ -99,11 +99,11 @@ public class MacchineControllerImpl implements MacchineController {
     }
 
     @Override
-    public ResponseEntity<?> updatePasseggero(Integer user, Integer idMacchina, Boolean andata, Boolean ritorno) throws Exception {
+    public ResponseEntity<?> updatePasseggero(String username, Integer idMacchina, Boolean andata, Boolean ritorno) throws Exception {
 
         // Funziona anche da UPDATE
 
-        Utenti u = utentiService.findByIdUtente(user);
+        Utenti u = utentiService.findByUsername(username);
         if(u == null){
             return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
         }
@@ -118,7 +118,7 @@ public class MacchineControllerImpl implements MacchineController {
             return new ResponseEntity<>(null, HttpStatus.OK);
         }
 
-        macchineUtentiService.save(user, idMacchina, andata, ritorno);
+        macchineUtentiService.save(u.getId(), idMacchina, andata, ritorno);
 
         return new ResponseEntity<>(null, HttpStatus.OK);
     }

@@ -163,6 +163,7 @@ public class Converter {
         macchinaDto.setProprietario(macchina.getProprietario().getNome().concat(" ").concat(macchina.getProprietario().getCognome()));
         macchinaDto.setUsername(macchina.getProprietario().getUsername());
         macchinaDto.setAuto(macchina.getTipo() == 1 ? "AUTO" : "MOTO");
+        macchinaDto.setId(macchina.getId());
 
         return macchinaDto;
     }
