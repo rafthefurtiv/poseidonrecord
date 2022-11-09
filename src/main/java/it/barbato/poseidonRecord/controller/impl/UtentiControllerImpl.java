@@ -27,6 +27,11 @@ public class UtentiControllerImpl implements UtentiController {
     }
 
     @Override
+    public Utenti getUtenteByUsername(String userName) {
+        return utentiService.findByUsername(userName);
+    }
+
+    @Override
     public ResponseEntity<?> getAuth(String user, String password) throws Exception {
 
         Esito esito = new Esito();

@@ -20,6 +20,10 @@ public interface UtentiController {
     public List<Utenti> getUtenteUnoById();
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/utente/username/{userName}")
+    public Utenti getUtenteByUsername(@PathVariable("userName") String userName);
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/login")
     public ResponseEntity<?> getAuth(@RequestParam("user") String user, @RequestParam("pass") String password) throws Exception;
 }
