@@ -9,7 +9,10 @@ import java.util.List;
 public interface MacchineUtentiRepository extends MineRepository<MacchineUtenti, Integer> {
 
     @Query("select c from MacchineUtenti c where c.passeggero = :passeggero")
-    MacchineUtenti findByPasseggero(Utenti passeggero);
+    List<MacchineUtenti> findByPasseggero(Utenti passeggero);
+
+    @Query("select c from MacchineUtenti c where c.passeggero = :passeggero and c.macchina = :macchina")
+    List<MacchineUtenti> findByPasseggeroAndMacchina(Utenti passeggero, Macchine macchina);
 
     @Query("select c from MacchineUtenti c where c.macchina = :macchina")
     List<MacchineUtenti> findByMacchina(Macchine macchina);

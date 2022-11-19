@@ -43,10 +43,11 @@ public class MacchineControllerImpl implements MacchineController {
     @Override
     public ResponseEntity<?> addMacchina(AddMacchinaDto macchina) throws Exception {
 
-        Utenti utente = utentiService.findByIdUtente(macchina.getIdProprietario());
+        Utenti utente = utentiService.findByUsername(macchina.getUsername());
         if(utente == null){
             return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
         }
+        macchina.setIdProprietario(utente.getId());
 
         Macchine macchine = macchineService.findByIdProprietario(utente);
         if(macchine != null){
@@ -81,9 +82,9 @@ public class MacchineControllerImpl implements MacchineController {
     }
 
     @Override
-    public ResponseEntity<?> deleteMacchina(Integer utente) throws Exception {
+    public ResponseEntity<?> deleteMacchina(String username) throws Exception {
 
-        Utenti u = utentiService.findByIdUtente(utente);
+        Utenti u = utentiService.findByUsername(username);
         if(u == null){
             return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
         }
@@ -108,13 +109,13 @@ public class MacchineControllerImpl implements MacchineController {
             return new ResponseEntity<>(new String("Utente non esistente"), HttpStatus.NOT_FOUND);
         }
 
-        Macchine macchine = macchineService.findByIdProprietario(u);
+        Macchine macchine = macchineService.findById(idMacchina);
         if(macchine == null){
             return new ResponseEntity<>(new String("Macchina non esistente"), HttpStatus.NOT_FOUND);
         }
 
         if(!andata && !ritorno){
-            macchineUtentiService.eliminaMacchineUtente(u);
+            macchineUtentiService.eliminaMacchineUtente(u, macchine);
             return new ResponseEntity<>(null, HttpStatus.OK);
         }
 
@@ -137,7 +138,7 @@ public class MacchineControllerImpl implements MacchineController {
             return new ResponseEntity<>(new String("Macchina non esistente"), HttpStatus.NOT_FOUND);
         }
 
-        macchineUtentiService.eliminaMacchineUtente(u);
+        macchineUtentiService.eliminaMacchineUtente(u, macchine);
 
         return new ResponseEntity<>(null, HttpStatus.OK);
     }

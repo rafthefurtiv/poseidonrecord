@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,15 +74,33 @@ public class MacchineUtentiService {
 
         Utenti utenti = new Utenti();
         utenti.setId(user);
-        MacchineUtenti macchineUtenti = macchineUtentiRepository.findByPasseggero(utenti);
+        List<MacchineUtenti> macchineUtentiList = macchineUtentiRepository.findByPasseggero(utenti);
 
-        if(macchineUtenti == null){
+        Iterator<MacchineUtenti> iterator = macchineUtentiList.iterator();
+        while (iterator.hasNext()){
+            MacchineUtenti macchineUtenti = iterator.next();
+            if(andata && macchineUtenti.getAndata() && macchineUtenti.getMacchina().getId() != idMacchina){
+                throw new Exception("Andata gia prenotata con altra macchina");
+            }
+
+            if(ritorno && macchineUtenti.getRitorno() && macchineUtenti.getMacchina().getId() != idMacchina){
+                throw new Exception("Ritorno gia prenotato con altra macchina");
+            }
+        }
+
+        List<MacchineUtenti> macchineUtentifiltered = macchineUtentiList.stream().filter(mu -> mu.getMacchina().getId().equals(idMacchina)).collect(Collectors.toList());
+        MacchineUtenti macchineUtenti;
+        if(!macchineUtentifiltered.isEmpty()){
+            macchineUtenti = macchineUtentifiltered.get(0);
+        }
+        else{
             macchineUtenti = new MacchineUtenti();
 
             Utenti passeggero = utentiService.findByIdUtente(user);
             if(passeggero == null){
                 throw new Exception("Utente inesistente");
             }
+
             macchineUtenti.setPasseggero(passeggero);
         }
 
@@ -94,11 +113,11 @@ public class MacchineUtentiService {
         macchineUtenti.setAndata(andata);
         macchineUtenti.setRitorno(ritorno);
 
-        List<MacchineUtenti> macchineUtentiList = macchineUtentiRepository.findByMacchina(macchine);
-        if(macchineUtentiList.stream().filter(MacchineUtenti::getAndata).collect(Collectors.toList()).size() > macchine.getPostiAndata()){
+        List<MacchineUtenti> macchineUtentiByMacchineList = macchineUtentiRepository.findByMacchina(macchine);
+        if(macchineUtentiByMacchineList.stream().filter(MacchineUtenti::getAndata).collect(Collectors.toList()).size() > macchine.getPostiAndata()){
             throw new Exception("Macchina andata piena");
         }
-        if(macchineUtentiList.stream().filter(MacchineUtenti::getRitorno).collect(Collectors.toList()).size() > macchine.getPostiAndata()){
+        if(macchineUtentiByMacchineList.stream().filter(MacchineUtenti::getRitorno).collect(Collectors.toList()).size() > macchine.getPostiAndata()){
             throw new Exception("Macchina ritorno piena");
         }
 
@@ -126,12 +145,11 @@ public class MacchineUtentiService {
     }
 
     @Transactional
-    public void eliminaMacchineUtente(Utenti utente){
+    public void eliminaMacchineUtente(Utenti utente, Macchine macchine){
 
-        MacchineUtenti macchineUtente = macchineUtentiRepository.findByPasseggero(utente);
+        List<MacchineUtenti> macchineUtente = macchineUtentiRepository.findByPasseggeroAndMacchina(utente, macchine);
 
-        macchineUtentiRepository.delete(macchineUtente);
-
+        macchineUtentiRepository.deleteAll(macchineUtente);
     }
 
 }

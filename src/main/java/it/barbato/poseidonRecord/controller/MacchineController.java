@@ -1,5 +1,4 @@
 package it.barbato.poseidonRecord.controller;
-import it.barbato.poseidonRecord.entity.Macchine;
 import it.barbato.poseidonRecord.entity.dto.AddMacchinaDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +27,8 @@ public interface MacchineController {
     public ResponseEntity<?> updateMacchina(@RequestBody AddMacchinaDto macchina) throws Exception;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @DeleteMapping("/macchina/utente/{idUtente}")
-    public ResponseEntity<?> deleteMacchina(@PathVariable(value = "idUtente") Integer utente) throws Exception;
+    @DeleteMapping("/macchina/utente/{username}")
+    public ResponseEntity<?> deleteMacchina(@PathVariable String username) throws Exception;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/passeggero/{username}/macchina/{idMacchina}")
