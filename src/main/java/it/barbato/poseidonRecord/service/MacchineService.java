@@ -20,6 +20,9 @@ public class MacchineService {
     @Autowired
     private MacchineUtentiRepository macchineUtentiRepository;
 
+    @Autowired
+    private UtentiService utentiService;
+
     @Transactional
     public List<Macchine> findAll() {
         return macchineRepository.findAll();
@@ -36,7 +39,18 @@ public class MacchineService {
     }
 
     @Transactional
-    public Macchine save(Macchine macchine){
+    public Macchine save(Macchine macchine) throws Exception {
+
+        Utenti passeggero = utentiService.findByUsername(macchine.getProprietario().getUsername());
+        if(passeggero == null){
+            throw new Exception("Utente inesistente");
+        }
+        List<MacchineUtenti> macchineUtentiList = macchineUtentiRepository.findByPasseggero(passeggero);
+
+        macchineUtentiList.forEach(mu -> {
+            macchineUtentiRepository.delete(mu);
+        });
+
         return macchineRepository.save(macchine);
     }
 

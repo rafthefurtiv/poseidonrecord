@@ -141,6 +141,7 @@ public class Converter {
 
         Utenti proprietario = new Utenti();
         proprietario.setId(addMacchinaDto.getIdProprietario());
+        proprietario.setUsername(addMacchinaDto.getUsername());
         macchine.setProprietario(proprietario);
         macchine.setNome(addMacchinaDto.getNome());
         macchine.setPostiAndata(addMacchinaDto.getPostiAndata());
