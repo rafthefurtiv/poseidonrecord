@@ -29,8 +29,8 @@ public class ChatService {
 
     @Transactional
     public List<Message> getAll(String id) {
-        Pageable topTwenty = PageRequest.of(0, 40);
-        return chatRepository.findLasts(id, topTwenty);
+        //Pageable topTwenty = PageRequest.of(0, 40);
+        return chatRepository.findLasts(id);
     }
 
     @Transactional
