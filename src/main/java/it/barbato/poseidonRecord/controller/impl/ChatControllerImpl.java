@@ -30,7 +30,7 @@ public class ChatControllerImpl implements ChatController {
     @Override
     public List<Message> getMessaggiByUtente(String id) {
 
-        return chatService.getAll(id);
+        return chatService.getAll(id.toLowerCase());
 
     }
 
@@ -39,7 +39,7 @@ public class ChatControllerImpl implements ChatController {
 
         Message m = new Message();
         m.setMessaggio(message);
-        m.setOwner(id);
+        m.setOwner(id.toLowerCase());
         m.setTimestamp(new Timestamp(System.currentTimeMillis()));
         chatService.saveMessage(m);
         return null;
