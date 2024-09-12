@@ -14,6 +14,11 @@ public interface ChatController {
     public List<Message> getMessaggiByUtente(@PathVariable("id") String id);
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/messaggi/{id}/new/{idMessaggio}")
+    public List<Message> getNewMessages(@PathVariable("id") String id,
+                                        @PathVariable("idMessaggio") Integer idMessaggio);
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/messaggi/{id}")
     public String saveMessaggio(@PathVariable("id") String id, @RequestBody String message);
 
