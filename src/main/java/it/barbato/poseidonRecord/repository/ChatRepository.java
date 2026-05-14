@@ -16,5 +16,7 @@ public interface ChatRepository extends MineRepository<Message, Integer> {
     @Query("select m from Message m order by timestamp ASC")
     List<Message> findAll(String id);
 
+    @Query("select m from Message m order by m.timestamp ASC")
+    List<Message> findAllOrderByTimestamp();
 
 }

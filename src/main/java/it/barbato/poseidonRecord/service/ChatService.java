@@ -2,6 +2,7 @@ package it.barbato.poseidonRecord.service;
 
 import it.barbato.poseidonRecord.entity.Message;
 import it.barbato.poseidonRecord.entity.UltimoAccesso;
+import it.barbato.poseidonRecord.entity.dto.ChatMessageDto;
 import it.barbato.poseidonRecord.repository.ChatRepository;
 import it.barbato.poseidonRecord.repository.UltimoAccessoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ChatService {
@@ -33,7 +35,6 @@ public class ChatService {
 
     @Transactional
     public List<Message> getAll(String id) {
-        //Pageable topTwenty = PageRequest.of(0, 40);
         UltimoAccesso ultimoAccesso = new UltimoAccesso();
         ultimoAccesso.setOwner(id);
         ultimoAccesso.setTimestamp(new Timestamp(System.currentTimeMillis()));
@@ -46,4 +47,21 @@ public class ChatService {
         chatRepository.save(message);
     }
 
+    @Transactional(readOnly = true)
+    public List<ChatMessageDto> getStorico() {
+        return chatRepository.findAllOrderByTimestamp()
+                .stream()
+                .map(ChatMessageDto::fromEntity)
+                .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public ChatMessageDto sendMessage(String from, String testo) {
+        Message m = new Message();
+        m.setOwner(from.toLowerCase());
+        m.setMessaggio(testo);
+        m.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        Message saved = chatRepository.save(m);
+        return ChatMessageDto.fromEntity(saved);
+    }
 }

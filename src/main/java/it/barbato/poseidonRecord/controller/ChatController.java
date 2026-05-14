@@ -1,6 +1,7 @@
 package it.barbato.poseidonRecord.controller;
 
 import it.barbato.poseidonRecord.entity.Message;
+import it.barbato.poseidonRecord.entity.dto.ChatMessageDto;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -8,6 +9,10 @@ import java.util.List;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/chat")
 public interface ChatController {
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/storico")
+    public List<ChatMessageDto> getStorico();
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/messaggi/{id}")

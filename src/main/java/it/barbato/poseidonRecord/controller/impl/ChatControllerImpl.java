@@ -2,6 +2,7 @@ package it.barbato.poseidonRecord.controller.impl;
 
 import it.barbato.poseidonRecord.controller.ChatController;
 import it.barbato.poseidonRecord.entity.Message;
+import it.barbato.poseidonRecord.entity.dto.ChatMessageDto;
 import it.barbato.poseidonRecord.service.ChatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,11 @@ public class ChatControllerImpl implements ChatController {
 
     @Autowired
     private ChatService chatService;
+
+    @Override
+    public List<ChatMessageDto> getStorico() {
+        return chatService.getStorico();
+    }
 
     @Override
     public List<Message> getMessaggiByUtente(String id) {

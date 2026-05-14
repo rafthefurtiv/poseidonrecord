@@ -19,7 +19,7 @@ public class Message {
     @Column(name = "id_messaggio", nullable = false)
     private Integer id;
 
-    @Column(name = "messaggio", nullable = false, length = 100)
+    @Column(name = "messaggio", nullable = false, length = 2000)
     private String messaggio;
 
     @Column(name = "owner", nullable = false, length = 100)
