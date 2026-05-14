@@ -47,8 +47,14 @@ public class ChatService {
         chatRepository.save(message);
     }
 
-    @Transactional(readOnly = true)
-    public List<ChatMessageDto> getStorico() {
+    @Transactional
+    public List<ChatMessageDto> getStorico(String owner) {
+        if (owner != null && !owner.isEmpty()) {
+            UltimoAccesso ultimoAccesso = new UltimoAccesso();
+            ultimoAccesso.setOwner(owner.toLowerCase());
+            ultimoAccesso.setTimestamp(new Timestamp(System.currentTimeMillis()));
+            ultimoAccessoRepository.save(ultimoAccesso);
+        }
         return chatRepository.findAllOrderByTimestamp()
                 .stream()
                 .map(ChatMessageDto::fromEntity)

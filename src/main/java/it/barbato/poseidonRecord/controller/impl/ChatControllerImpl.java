@@ -17,8 +17,8 @@ public class ChatControllerImpl implements ChatController {
     private ChatService chatService;
 
     @Override
-    public List<ChatMessageDto> getStorico() {
-        return chatService.getStorico();
+    public List<ChatMessageDto> getStorico(String owner) {
+        return chatService.getStorico(owner);
     }
 
     @Override

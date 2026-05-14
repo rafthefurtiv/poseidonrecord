@@ -12,7 +12,7 @@ public interface ChatController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/storico")
-    public List<ChatMessageDto> getStorico();
+    public List<ChatMessageDto> getStorico(@RequestParam("owner") String owner);
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/messaggi/{id}")
